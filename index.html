@@ -66,20 +66,27 @@ body.logged-in .js-login,body.logged-in .js-signup{display:none}
 </div>
 
 <section class="member-area" id="memberArea">
-<div class="wrap">
-<div class="member-head"><div><div class="eyebrow">— ESPACE ADHÉRENT —</div><h1>MON <span style="color:var(--accent)">ESPACE</span></h1><div class="member-email" id="memberEmail"></div></div><button class="btn" id="memberHome" type="button">← Accueil</button></div>
-<div class="member-grid">
-<div class="member-card"><div class="mi">👤</div><h3>MON PROFIL</h3><p>Retrouve et complète tes informations personnelles.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">💳</div><h3>MON ABONNEMENT</h3><p>Consulte ton statut et, plus tard, tes paiements et renouvellements.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">📅</div><h3>PLANNING & RÉSERVATIONS</h3><p>Consulte les cours et réserve ta place lorsqu’ils seront connectés à Grist.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">🥊</div><h3>COACHING INDIVIDUEL</h3><p>Retrouve tes accompagnements et tes prochaines séances.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">📈</div><h3>MA PROGRESSION</h3><p>Suis les évaluations et objectifs rendus visibles par ton coach.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">🎒</div><h3>MON ÉQUIPEMENT</h3><p>Retrouve le matériel actuellement prêté par le club.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">👥</div><h3>SALONS</h3><p>Échange avec la communauté dans les salons auxquels tu as accès.</p><button type="button">Bientôt disponible →</button></div>
-<div class="member-card"><div class="mi">✉️</div><h3>MESSAGES PRIVÉS</h3><p>Retrouve tes conversations privées dans ton espace.</p><button type="button">Bientôt disponible →</button></div>
-</div>
-<div class="member-note">Ton compte fonctionne déjà avec Supabase. Les cartes seront reliées progressivement aux données Boxing Coach, avec les droits d’accès nécessaires.</div>
-</div>
+  <div class="wrap">
+    <div class="member-head">
+      <div>
+        <div class="eyebrow">— ESPACE ADHÉRENT —</div>
+        <h1>MON <span style="color:var(--accent)">ESPACE</span></h1>
+        <div class="member-email" id="memberEmail"></div>
+      </div>
+      <button class="btn" id="memberHome" type="button">← Accueil</button>
+    </div>
+    <div class="member-grid">
+      <div class="member-card"><div class="mi">👤</div><h3>MON PROFIL</h3><p>Retrouve et complète tes informations personnelles.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">💳</div><h3>MON ABONNEMENT</h3><p>Consulte ton abonnement et son statut.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">📅</div><h3>PLANNING & RÉSERVATIONS</h3><p>Consulte les cours et réserve ta place.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">🥊</div><h3>COACHING INDIVIDUEL</h3><p>Retrouve tes accompagnements et tes prochaines séances.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">📈</div><h3>MA PROGRESSION</h3><p>Suis tes évaluations et tes objectifs.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">🎒</div><h3>MON ÉQUIPEMENT</h3><p>Retrouve le matériel actuellement prêté par le club.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">👥</div><h3>SALONS</h3><p>Échange avec la communauté dans tes salons.</p><button type="button">Bientôt disponible →</button></div>
+      <div class="member-card"><div class="mi">✉️</div><h3>MESSAGES PRIVÉS</h3><p>Retrouve tes conversations privées.</p><button type="button">Bientôt disponible →</button></div>
+    </div>
+    <div class="member-note">Ton compte Supabase est connecté. Les rubriques seront reliées progressivement aux données Boxing Coach.</div>
+  </div>
 </section>
 </main>
 <div class="auth-modal" id="signupModal" aria-hidden="true">
@@ -115,6 +122,7 @@ body.logged-in .js-login,body.logged-in .js-signup{display:none}
   </div>
 </div>
 <footer><div class="wrap">🥊 <b style="color:white">BOXING <span style="color:var(--accent)">COACH</span></b> — Discipline · Progression · Communauté</div></footer>
+<script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
 <script>
@@ -124,8 +132,8 @@ $('contactForm').addEventListener('submit',async(e)=>{e.preventDefault();$('stat
 </script>
 
 <script>
-const SUPABASE_URL = "https://ggwxwmjdigmlivicbdxp.supabase.co";
-const SUPABASE_KEY = "sb_publishable_xwqWrN8BdE9XWtrKOTI8Eg_tRp-aM1B";
+const SUPABASE_URL = window.BOXING_CONFIG.SUPABASE_URL;
+const SUPABASE_KEY = window.BOXING_CONFIG.SUPABASE_KEY;
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 function openAuth(id){
@@ -178,7 +186,6 @@ document.getElementById('signupForm').addEventListener('submit', async (e)=>{
   const password=document.getElementById('signupPassword').value;
   const password2=document.getElementById('signupPassword2').value;
   if(password!==password2){status.className='auth-status error';status.textContent='Les deux mots de passe ne correspondent pas.';return;}
-  if(SUPABASE_KEY.includes('COLLE_TA_')){status.className='auth-status error';status.textContent='Ajoute d’abord ta Publishable key Supabase dans index.html.';return;}
   const {error}=await supabaseClient.auth.signUp({
     email,
     password,
@@ -193,7 +200,6 @@ document.getElementById('loginForm').addEventListener('submit', async (e)=>{
   e.preventDefault();
   const status=document.getElementById('loginStatus');
   status.className='auth-status'; status.textContent='Connexion…';
-  if(SUPABASE_KEY.includes('COLLE_TA_')){status.className='auth-status error';status.textContent='Ajoute d’abord ta Publishable key Supabase dans index.html.';return;}
   const {data,error}=await supabaseClient.auth.signInWithPassword({
     email:document.getElementById('loginEmail').value.trim(),
     password:document.getElementById('loginPassword').value
