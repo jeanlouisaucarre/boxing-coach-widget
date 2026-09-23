@@ -85,6 +85,11 @@ nav{
   color:#090b0c;
 }
 
+.btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 .nav-member,
 .nav-profile,
 .nav-logout{
@@ -103,12 +108,19 @@ body.logged-in .js-signup{
 }
 
 
-/* ACCUEIL */
+/* =========================
+   ACCUEIL
+========================= */
 
 .hero{
   min-height:600px;
   background:
-    linear-gradient(90deg,rgba(2,6,9,.96) 0%,rgba(2,6,9,.73) 42%,rgba(2,6,9,.08) 75%),
+    linear-gradient(
+      90deg,
+      rgba(2,6,9,.96) 0%,
+      rgba(2,6,9,.73) 42%,
+      rgba(2,6,9,.08) 75%
+    ),
     url('salle-boxe.jpg') center/cover no-repeat;
   display:flex;
   align-items:flex-end;
@@ -138,7 +150,6 @@ body.logged-in .js-signup{
 }
 
 .hero h1 span{color:var(--accent)}
-
 .hero h2{font-size:27px;margin:0 0 12px}
 
 .hero p{
@@ -192,9 +203,7 @@ section{
 }
 
 .card{min-height:250px}
-
 .icon{font-size:32px;margin-bottom:30px}
-
 .card h3{font-size:24px;margin:0 0 10px}
 
 .card p{
@@ -246,7 +255,10 @@ section{
   padding:30px;
 }
 
-.coaching-box b{display:block;margin-bottom:12px}
+.coaching-box b{
+  display:block;
+  margin-bottom:12px;
+}
 
 .coaching-box span{
   color:var(--muted);
@@ -278,7 +290,10 @@ section{
   gap:28px;
 }
 
-.value b{display:block;margin-bottom:6px}
+.value b{
+  display:block;
+  margin-bottom:6px;
+}
 
 .value span{
   color:var(--muted);
@@ -297,7 +312,8 @@ form{
   max-width:650px;
 }
 
-input,textarea{
+input,
+textarea{
   width:100%;
   background:#0d1418;
   border:1px solid #273137;
@@ -321,7 +337,9 @@ button{font:inherit}
 }
 
 
-/* ESPACE MEMBRE */
+/* =========================
+   ESPACE MEMBRE
+========================= */
 
 .app-page{
   display:none;
@@ -344,7 +362,9 @@ button{font:inherit}
   line-height:.95;
 }
 
-.page-head h1 span{color:var(--accent)}
+.page-head h1 span{
+  color:var(--accent);
+}
 
 .member-email{
   color:var(--muted);
@@ -395,7 +415,9 @@ button{font:inherit}
 }
 
 
-/* PAGE PROFIL */
+/* =========================
+   PROFIL
+========================= */
 
 .profile-layout{
   display:grid;
@@ -404,12 +426,20 @@ button{font:inherit}
   align-items:start;
 }
 
-.profile-identity{
+.profile-identity,
+.profile-information{
   background:linear-gradient(180deg,#11181d,#080d10);
   border:1px solid var(--line);
   border-radius:14px;
+}
+
+.profile-identity{
   padding:30px 24px;
   text-align:center;
+}
+
+.profile-information{
+  padding:28px;
 }
 
 .profile-photo{
@@ -462,13 +492,6 @@ button{font:inherit}
   margin-top:10px;
 }
 
-.profile-information{
-  background:linear-gradient(180deg,#11181d,#080d10);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:28px;
-}
-
 .profile-information h2{
   margin:0 0 6px;
   font-size:28px;
@@ -486,7 +509,13 @@ button{font:inherit}
   font-weight:800;
 }
 
-.profile-status.error{color:#ff7474}
+.profile-status.error{
+  color:#ff7474;
+}
+
+.profile-form{
+  max-width:none;
+}
 
 .profile-fields{
   display:grid;
@@ -495,26 +524,65 @@ button{font:inherit}
 }
 
 .profile-field{
-  background:#0d1418;
-  border:1px solid #273137;
-  border-radius:9px;
-  padding:16px;
-  min-height:75px;
+  min-width:0;
 }
 
-.profile-field small{
+.profile-field.full{
+  grid-column:1/-1;
+}
+
+.profile-field label{
   display:block;
   color:var(--muted);
-  margin-bottom:7px;
+  font-size:12px;
+  margin:0 0 7px;
 }
 
-.profile-field strong{
-  display:block;
-  word-break:break-word;
+.profile-field input,
+.profile-field textarea{
+  margin:0;
+}
+
+.profile-field textarea{
+  min-height:100px;
+}
+
+.profile-field input:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  background:#0a0f12;
+}
+
+.profile-readonly{
+  width:100%;
+  min-height:52px;
+  display:flex;
+  align-items:center;
+  background:#0a0f12;
+  border:1px solid #273137;
+  color:#dce1e4;
+  padding:15px;
+  border-radius:8px;
+}
+
+.profile-save{
+  margin-top:20px;
+}
+
+.profile-security{
+  margin-top:18px;
+  padding:14px;
+  border:1px solid #273137;
+  border-radius:8px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
 }
 
 
-/* AUTH */
+/* =========================
+   AUTH
+========================= */
 
 .auth-modal{
   position:fixed;
@@ -528,7 +596,9 @@ button{font:inherit}
   backdrop-filter:blur(8px);
 }
 
-.auth-modal.open{display:flex}
+.auth-modal.open{
+  display:flex;
+}
 
 .auth-card{
   position:relative;
@@ -549,7 +619,9 @@ button{font:inherit}
   line-height:1.5;
 }
 
-.auth-card form{max-width:none}
+.auth-card form{
+  max-width:none;
+}
 
 .auth-close{
   position:absolute;
@@ -583,7 +655,9 @@ button{font:inherit}
   font-size:14px;
 }
 
-.auth-status.error{color:#ff7474}
+.auth-status.error{
+  color:#ff7474;
+}
 
 footer{
   border-top:1px solid var(--line);
@@ -593,19 +667,51 @@ footer{
 }
 
 @media(max-width:900px){
-  .links a:not(.btn){display:none}
-  .links{gap:7px}
-  .links .btn{padding:10px 11px;font-size:12px}
-  .brand{font-size:20px}
-  .member-grid{grid-template-columns:1fr}
-  .profile-layout{grid-template-columns:1fr}
-  .profile-fields{grid-template-columns:1fr}
-  .page-head{align-items:flex-start;flex-direction:column}
-  .cards{grid-template-columns:1fr}
-  .community{grid-template-columns:1fr}
-  .coaching-grid{grid-template-columns:1fr}
-  .features{grid-template-columns:1fr 1fr}
+
+  .links a:not(.btn){
+    display:none;
+  }
+
+  .links{
+    gap:7px;
+  }
+
+  .links .btn{
+    padding:10px 11px;
+    font-size:12px;
+  }
+
+  .brand{
+    font-size:20px;
+  }
+
+  .member-grid,
+  .profile-fields,
+  .cards,
+  .community,
+  .coaching-grid{
+    grid-template-columns:1fr;
+  }
+
+  .profile-layout{
+    grid-template-columns:1fr;
+  }
+
+  .profile-field.full{
+    grid-column:auto;
+  }
+
+  .page-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .features{
+    grid-template-columns:1fr 1fr;
+  }
+
 }
+
 </style>
 </head>
 
@@ -648,7 +754,6 @@ Se déconnecter
 </button>
 
 </div>
-
 </nav>
 </div>
 </header>
@@ -656,9 +761,9 @@ Se déconnecter
 
 <main>
 
-<!-- ========================= -->
-<!-- PAGE PUBLIQUE -->
-<!-- ========================= -->
+<!-- =========================
+     PAGE PUBLIQUE
+========================= -->
 
 <div id="publicPage">
 
@@ -820,12 +925,16 @@ individuels depuis le même espace.
 </p>
 
 <div class="actions">
+
 <button class="btn primary js-signup" type="button">
 Créer mon compte
 </button>
-<a class="btn" href="#contact">✉ Nous contacter</a>
-</div>
 
+<a class="btn" href="#contact">
+✉ Nous contacter
+</a>
+
+</div>
 </div>
 
 <div class="values">
@@ -870,11 +979,18 @@ Le formulaire sera relié au serveur sécurisé.
 
 <input id="prenom" placeholder="Prénom" required>
 <input id="nom" placeholder="Nom" required>
-<input id="email" type="email" placeholder="Adresse e-mail" required>
+
+<input
+id="email"
+type="email"
+placeholder="Adresse e-mail"
+required>
+
 <input id="telephone" placeholder="Téléphone">
 <input id="sujet" placeholder="Sujet">
 
-<textarea id="message"
+<textarea
+id="message"
 placeholder="Votre message"
 required></textarea>
 
@@ -892,9 +1008,9 @@ Envoyer ma demande
 </div>
 
 
-<!-- ========================= -->
-<!-- MON ESPACE -->
-<!-- ========================= -->
+<!-- =========================
+     MON ESPACE
+========================= -->
 
 <section class="app-page" id="memberArea">
 <div class="wrap">
@@ -902,16 +1018,25 @@ Envoyer ma demande
 <div class="page-head">
 
 <div>
-<div class="eyebrow">— ESPACE ADHÉRENT —</div>
+
+<div class="eyebrow">
+— ESPACE ADHÉRENT —
+</div>
 
 <h1>
 MON <span>ESPACE</span>
 </h1>
 
-<div class="member-email" id="memberEmail"></div>
+<div
+class="member-email"
+id="memberEmail">
 </div>
 
-<button class="btn memberHome" type="button">
+</div>
+
+<button
+class="btn memberHome"
+type="button">
 ← Accueil
 </button>
 
@@ -921,15 +1046,22 @@ MON <span>ESPACE</span>
 <div class="member-grid">
 
 <div class="member-card">
+
 <div class="mi">👤</div>
+
 <h3>MON PROFIL</h3>
+
 <p>
-Consulte tes informations personnelles
+Consulte et modifie tes informations personnelles
 et ta photo de profil.
 </p>
-<button id="memberProfileButton" type="button">
+
+<button
+id="memberProfileButton"
+type="button">
 Voir mon profil →
 </button>
+
 </div>
 
 
@@ -981,7 +1113,9 @@ Retrouve le matériel actuellement prêté par le club.
 <div class="member-card">
 <div class="mi">👥</div>
 <h3>SALONS</h3>
-<p>Échange avec la communauté dans tes salons.</p>
+<p>
+Échange avec la communauté dans tes salons.
+</p>
 <button type="button">Bientôt disponible →</button>
 </div>
 
@@ -989,7 +1123,9 @@ Retrouve le matériel actuellement prêté par le club.
 <div class="member-card">
 <div class="mi">✉️</div>
 <h3>MESSAGES PRIVÉS</h3>
-<p>Retrouve tes conversations privées.</p>
+<p>
+Retrouve tes conversations privées.
+</p>
 <button type="button">Bientôt disponible →</button>
 </div>
 
@@ -1004,9 +1140,9 @@ Ton espace Boxing Coach est connecté à ton compte.
 </section>
 
 
-<!-- ========================= -->
-<!-- PAGE MON PROFIL -->
-<!-- ========================= -->
+<!-- =========================
+     MON PROFIL
+========================= -->
 
 <section class="app-page" id="profilePage">
 <div class="wrap">
@@ -1023,11 +1159,17 @@ Ton espace Boxing Coach est connecté à ton compte.
 MON <span>PROFIL</span>
 </h1>
 
-<div class="member-email" id="profileTopEmail"></div>
+<div
+class="member-email"
+id="profileTopEmail">
+</div>
 
 </div>
 
-<button class="btn" id="profileBack" type="button">
+<button
+class="btn"
+id="profileBack"
+type="button">
 ← Mon espace
 </button>
 
@@ -1036,8 +1178,7 @@ MON <span>PROFIL</span>
 
 <div class="profile-layout">
 
-
-<!-- PHOTO + IDENTITE -->
+<!-- PHOTO -->
 
 <div class="profile-identity">
 
@@ -1047,22 +1188,24 @@ MON <span>PROFIL</span>
 👤
 </span>
 
-<img id="profilePhotoImage"
+<img
+id="profilePhotoImage"
 alt="Photo de profil">
 
 </div>
-
 
 <h2 id="profileFullName">
 Mon profil
 </h2>
 
-<div class="profile-level"
+<div
+class="profile-level"
 id="profileLevel">
 —
 </div>
 
-<div class="profile-small-email"
+<div
+class="profile-small-email"
 id="profileSideEmail">
 </div>
 
@@ -1071,9 +1214,7 @@ id="profileSideEmail">
 class="btn primary photo-placeholder-button"
 id="photoButton"
 type="button">
-
 📷 Ajouter une photo
-
 </button>
 
 <input
@@ -1083,49 +1224,197 @@ accept="image/jpeg,image/png,image/webp"
 hidden>
 
 <div class="photo-help">
-
-JPEG, PNG ou WEBP · 5 Mo maximum.
-
+JPEG, PNG ou WEBP · 5 Mo maximum.<br>
+Ta photo reste dans ton espace sécurisé.
 </div>
 
 </div>
 
 
-<!-- INFORMATIONS -->
+<!-- MODIFICATION DES INFORMATIONS -->
 
 <div class="profile-information">
 
-<h2>
-MES INFORMATIONS
-</h2>
+<h2>MES INFORMATIONS</h2>
 
 <p class="profile-description">
-Les informations de ton profil Boxing Coach.
+Tu peux modifier tes informations personnelles ci-dessous.
 </p>
 
-<div class="profile-status"
+<div
+class="profile-status"
 id="profileStatus">
 </div>
 
-<div class="profile-fields"
-id="profileFields">
+
+<form
+class="profile-form"
+id="profileForm">
+
+<div class="profile-fields">
+
+
+<div class="profile-field">
+
+<label for="profileFirstName">
+Prénom
+</label>
+
+<input
+id="profileFirstName"
+type="text"
+autocomplete="given-name">
+
 </div>
+
+
+<div class="profile-field">
+
+<label for="profileLastName">
+Nom
+</label>
+
+<input
+id="profileLastName"
+type="text"
+autocomplete="family-name">
+
+</div>
+
+
+<div class="profile-field">
+
+<label>
+Adresse e-mail
+</label>
+
+<div
+class="profile-readonly"
+id="profileEmail">
+—
+</div>
+
+</div>
+
+
+<div class="profile-field">
+
+<label>
+Niveau
+</label>
+
+<div
+class="profile-readonly"
+id="profileLevelField">
+—
+</div>
+
+</div>
+
+
+<div class="profile-field">
+
+<label for="profilePhone">
+Téléphone
+</label>
+
+<input
+id="profilePhone"
+type="tel"
+autocomplete="tel">
+
+</div>
+
+
+<div class="profile-field">
+
+<label for="profileBirthDate">
+Date de naissance
+</label>
+
+<input
+id="profileBirthDate"
+type="date">
+
+</div>
+
+
+<div class="profile-field full">
+
+<label for="profileGoal">
+Objectif principal
+</label>
+
+<textarea
+id="profileGoal"
+placeholder="Exemple : améliorer ma technique, mon cardio..."></textarea>
+
+</div>
+
+
+<div class="profile-field">
+
+<label for="profileEmergencyName">
+Contact d’urgence
+</label>
+
+<input
+id="profileEmergencyName"
+type="text">
+
+</div>
+
+
+<div class="profile-field">
+
+<label for="profileEmergencyPhone">
+Téléphone urgence
+</label>
+
+<input
+id="profileEmergencyPhone"
+type="tel">
 
 </div>
 
 </div>
 
+
+<button
+class="btn primary profile-save"
+id="profileSaveButton"
+type="submit">
+
+💾 Enregistrer mes modifications
+
+</button>
+
+</form>
+
+
+<div class="profile-security">
+
+🔒 Ton adresse e-mail est liée à ton compte de connexion
+et ne peut pas être modifiée ici.
+Ton niveau est géré par le coach.
+
+</div>
+
+</div>
+
+</div>
 </div>
 </section>
 
 </main>
 
 
-<!-- ========================= -->
-<!-- CREER UN COMPTE -->
-<!-- ========================= -->
+<!-- =========================
+     CREER UN COMPTE
+========================= -->
 
-<div class="auth-modal"
+<div
+class="auth-modal"
 id="signupModal"
 aria-hidden="true">
 
@@ -1188,7 +1477,9 @@ id="signupStatus">
 
 Déjà un compte ?
 
-<button type="button" id="goLogin">
+<button
+type="button"
+id="goLogin">
 Se connecter
 </button>
 
@@ -1198,11 +1489,12 @@ Se connecter
 </div>
 
 
-<!-- ========================= -->
-<!-- CONNEXION -->
-<!-- ========================= -->
+<!-- =========================
+     CONNEXION
+========================= -->
 
-<div class="auth-modal"
+<div
+class="auth-modal"
 id="loginModal"
 aria-hidden="true">
 
@@ -1257,7 +1549,9 @@ id="loginStatus">
 
 Pas encore de compte ?
 
-<button type="button" id="goSignup">
+<button
+type="button"
+id="goSignup">
 Créer un compte
 </button>
 
@@ -1284,7 +1578,7 @@ COACH
 </footer>
 
 
-<!-- IMPORTANT : ON GARDE TON CONFIG.JS -->
+<!-- CONFIG.JS RESTE SEPARE -->
 
 <script src="config.js"></script>
 
@@ -1292,6 +1586,13 @@ COACH
 
 
 <script>
+
+/*
+==================================================
+BOXING COACH
+PARTIE JAVASCRIPT
+==================================================
+*/
 
 const $ = id =>
 document.getElementById(id);
@@ -1313,10 +1614,21 @@ window.supabase.createClient(
   SUPABASE_KEY
 );
 
-const PROFILE_BUCKET = 'photos-profils';
-const PROFILE_PHOTO_FILE = 'avatar';
+
+/* =========================
+   CONFIG PROFIL
+========================= */
+
+const PROFILE_BUCKET =
+'photos-profils';
+
+const PROFILE_PHOTO_FILE =
+'avatar';
+
 let cachedProfile = null;
+
 let cachedProfileUserId = null;
+
 let currentPhotoObjectUrl = null;
 
 
@@ -1326,9 +1638,14 @@ let currentPhotoObjectUrl = null;
 
 function hidePages(){
 
-  $('publicPage').style.display='none';
-  $('memberArea').style.display='none';
-  $('profilePage').style.display='none';
+  $('publicPage').style.display =
+  'none';
+
+  $('memberArea').style.display =
+  'none';
+
+  $('profilePage').style.display =
+  'none';
 
 }
 
@@ -1337,7 +1654,8 @@ function showPublic(){
 
   hidePages();
 
-  $('publicPage').style.display='block';
+  $('publicPage').style.display =
+  'block';
 
   window.scrollTo({
     top:0,
@@ -1351,10 +1669,11 @@ function showMember(user){
 
   hidePages();
 
-  $('memberArea').style.display='block';
+  $('memberArea').style.display =
+  'block';
 
   $('memberEmail').textContent =
-    user?.email || '';
+  user?.email || '';
 
   window.scrollTo({
     top:0,
@@ -1364,46 +1683,370 @@ function showMember(user){
 }
 
 
+/* =========================
+   CONVERSION DATE GRIST
+========================= */
+
+function gristDateToInput(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ''
+  ){
+    return '';
+  }
+
+  let date;
+
+  if(
+    typeof value === 'number'
+  ){
+
+    date =
+    new Date(
+      value * 1000
+    );
+
+  }else{
+
+    date =
+    new Date(value);
+
+  }
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+    return '';
+  }
+
+  const year =
+  date.getUTCFullYear();
+
+  const month =
+  String(
+    date.getUTCMonth() + 1
+  ).padStart(2,'0');
+
+  const day =
+  String(
+    date.getUTCDate()
+  ).padStart(2,'0');
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================
+   AFFICHAGE PROFIL
+========================= */
+
+function renderProfile(
+  profile,
+  user
+){
+
+  const p =
+  profile || {};
+
+  const fullName =
+  `${p.prenom || ''} ${p.nom || ''}`
+  .trim();
+
+
+  $('profileFullName').textContent =
+  fullName || 'Mon profil';
+
+
+  $('profileLevel').textContent =
+  p.niveau ||
+  'Niveau non renseigné';
+
+
+  $('profileSideEmail').textContent =
+  p.email ||
+  user?.email ||
+  '';
+
+
+  $('profileTopEmail').textContent =
+  p.email ||
+  user?.email ||
+  '';
+
+
+  $('profileFirstName').value =
+  p.prenom || '';
+
+
+  $('profileLastName').value =
+  p.nom || '';
+
+
+  $('profileEmail').textContent =
+  p.email ||
+  user?.email ||
+  '—';
+
+
+  $('profileLevelField').textContent =
+  p.niveau ||
+  'Non renseigné';
+
+
+  $('profilePhone').value =
+  p.telephone || '';
+
+
+  $('profileBirthDate').value =
+  gristDateToInput(
+    p.dateNaissance
+  );
+
+
+  $('profileGoal').value =
+  p.objectif || '';
+
+
+  $('profileEmergencyName').value =
+  p.contactUrgence || '';
+
+
+  $('profileEmergencyPhone').value =
+  p.telephoneUrgence || '';
+
+}
+
+
+/* =========================
+   CHARGER PROFIL
+========================= */
+
+async function loadMyProfile(
+  {silent=false}={}
+){
+
+  const status =
+  $('profileStatus');
+
+
+  const {
+    data:{session},
+    error:sessionError
+  } =
+  await supabaseClient.auth
+  .getSession();
+
+
+  if(
+    sessionError ||
+    !session
+  ){
+
+    status.className =
+    'profile-status error';
+
+    status.textContent =
+    'Tu dois être connecté pour consulter ton profil.';
+
+    return null;
+
+  }
+
+
+  if(
+    !silent &&
+    !cachedProfile
+  ){
+
+    status.className =
+    'profile-status';
+
+    status.textContent =
+    'Chargement du profil…';
+
+  }
+
+
+  try{
+
+    const response =
+    await fetch(
+      `${SUPABASE_URL}/functions/v1/mon-profil`,
+      {
+
+        method:'GET',
+
+        headers:{
+
+          'Authorization':
+          `Bearer ${session.access_token}`,
+
+          'apikey':
+          SUPABASE_KEY
+
+        }
+
+      }
+    );
+
+
+    const result =
+    await response
+    .json()
+    .catch(()=>({}));
+
+
+    if(!response.ok){
+
+      throw new Error(
+        result.error ||
+        `Erreur ${response.status}`
+      );
+
+    }
+
+
+    const profile =
+    result.profil || {};
+
+
+    cachedProfile =
+    profile;
+
+    cachedProfileUserId =
+    session.user.id;
+
+
+    renderProfile(
+      profile,
+      session.user
+    );
+
+
+    status.className =
+    'profile-status';
+
+    status.textContent = '';
+
+
+    return profile;
+
+  }
+
+  catch(error){
+
+    console.error(
+      'mon-profil',
+      error
+    );
+
+
+    if(!cachedProfile){
+
+      status.className =
+      'profile-status error';
+
+      status.textContent =
+      'Impossible de charger ton profil : '
+      + error.message;
+
+    }
+
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================
+   OUVRIR PROFIL
+========================= */
+
 async function showProfile(){
 
   hidePages();
 
-  $('profilePage').style.display='block';
+  $('profilePage').style.display =
+  'block';
 
   window.scrollTo({
     top:0,
     behavior:'smooth'
   });
 
-  const {data} =
-  await supabaseClient.auth.getSession();
 
-  const session = data.session;
+  const {data} =
+  await supabaseClient.auth
+  .getSession();
+
+
+  const session =
+  data.session;
+
 
   if(!session){
+
+    showPublic();
+
     return;
+
   }
+
+
+  /*
+  Si déjà préchargé :
+  affichage immédiat.
+  */
 
   if(
     cachedProfile &&
-    cachedProfileUserId === session.user.id
+    cachedProfileUserId ===
+    session.user.id
   ){
+
     renderProfile(
       cachedProfile,
       session.user
     );
 
-    await Promise.all([
-      loadMyProfile({silent:true}),
-      loadProfilePhoto(session.user)
-    ]);
+
+    /*
+    Actualisation silencieuse
+    en arrière-plan.
+    */
+
+    loadMyProfile({
+      silent:true
+    });
+
+
+    loadProfilePhoto(
+      session.user
+    );
+
 
     return;
+
   }
 
+
   await Promise.all([
-    loadMyProfile({silent:false}),
-    loadProfilePhoto(session.user)
+
+    loadMyProfile({
+      silent:false
+    }),
+
+    loadProfilePhoto(
+      session.user
+    )
+
   ]);
 
 }
@@ -1418,10 +2061,14 @@ function setAuthUI(session){
   const logged =
   !!session?.user;
 
-  document.body.classList.toggle(
+
+  document.body
+  .classList
+  .toggle(
     'logged-in',
     logged
   );
+
 
   if(logged){
 
@@ -1435,321 +2082,8 @@ function setAuthUI(session){
 
 }
 
-
-/* =========================
-   PROFIL
-========================= */
-
-function renderProfile(p,user){
-
-  const fields =
-  $('profileFields');
-
-  const fullName =
-  `${p.prenom || ''} ${p.nom || ''}`.trim();
-
-  $('profileFullName').textContent =
-  fullName || 'Mon profil';
-
-  $('profileLevel').textContent =
-  p.niveau || 'Niveau non renseigné';
-
-  $('profileSideEmail').textContent =
-  p.email || user?.email || '';
-
-  $('profileTopEmail').textContent =
-  p.email || user?.email || '';
-
-  const items = [
-
-    ['Prénom',p.prenom],
-    ['Nom',p.nom],
-    ['E-mail',p.email],
-    ['Téléphone',p.telephone],
-    ['Date de naissance',p.dateNaissance],
-    ['Niveau',p.niveau],
-    ['Objectif principal',p.objectif],
-    ['Contact d’urgence',p.contactUrgence],
-    ['Téléphone urgence',p.telephoneUrgence]
-
-  ];
-
-  fields.innerHTML =
-  items.map(
-    ([label,value]) => `
-
-    <div class="profile-field">
-
-      <small>
-      ${escapeHtml(label)}
-      </small>
-
-      <strong>
-      ${escapeHtml(
-        formatProfileValue(value)
-      )}
-      </strong>
-
-    </div>
-
-    `
-  ).join('');
-
-}
-
-
-async function loadMyProfile({silent=false}={}){
-
-  const status =
-  $('profileStatus');
-
-  status.className =
-  'profile-status';
-
-  const {
-    data:{session},
-    error:sessionError
-  } =
-  await supabaseClient.auth.getSession();
-
-  if(sessionError || !session){
-
-    status.className =
-    'profile-status error';
-
-    status.textContent =
-    'Tu dois être connecté pour consulter ton profil.';
-
-    return null;
-
-  }
-
-  if(!silent && !cachedProfile){
-
-    status.textContent =
-    'Chargement du profil…';
-
-  }
-
-  try{
-
-    const response =
-    await fetch(
-      `${SUPABASE_URL}/functions/v1/mon-profil`,
-      {
-        method:'GET',
-
-        headers:{
-          'Authorization':
-          `Bearer ${session.access_token}`,
-
-          'apikey':
-          SUPABASE_KEY
-        }
-      }
-    );
-
-    const result =
-    await response.json()
-    .catch(()=>({}));
-
-    if(!response.ok){
-
-      throw new Error(
-        result.error ||
-        `Erreur ${response.status}`
-      );
-
-    }
-
-    const p =
-    result.profil || {};
-
-    cachedProfile = p;
-    cachedProfileUserId = session.user.id;
-
-    renderProfile(
-      p,
-      session.user
-    );
-
-    status.textContent = '';
-
-    return p;
-
-  }
-
-  catch(error){
-
-    console.error(
-      'mon-profil',
-      error
-    );
-
-    if(!cachedProfile){
-
-      status.className =
-      'profile-status error';
-
-      status.textContent =
-      'Impossible de charger ton profil : '
-      + error.message;
-
-    }
-
-    return null;
-
-  }
-
-}
-
-function formatProfileValue(value){
-
-  if(
-    value === null ||
-    value === undefined ||
-    value === ''
-  ){
-
-    return 'Non renseigné';
-
-  }
-
-
-  if(
-    typeof value === 'number' &&
-    value > 100000000
-  ){
-
-    const date =
-    new Date(
-      value * 1000
-    );
-
-
-    if(
-      !Number.isNaN(
-        date.getTime()
-      )
-    ){
-
-      return date.toLocaleDateString(
-        'fr-FR'
-      );
-
-    }
-
-  }
-
-
-  return String(value);
-
-}
-
-
-function escapeHtml(value){
-
-  return String(value)
-
-  .replaceAll('&','&amp;')
-  .replaceAll('<','&lt;')
-  .replaceAll('>','&gt;')
-  .replaceAll('"','&quot;')
-  .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================
-   BOUTONS NAVIGATION
-========================= */
-
-$('navMember')
-.addEventListener(
-  'click',
-  async ()=>{
-
-    const {data} =
-    await supabaseClient.auth.getSession();
-
-    if(data.session){
-
-      showMember(
-        data.session.user
-      );
-
-    }
-
-  }
-);
-
-
-$('navProfile')
-.addEventListener(
-  'click',
-  showProfile
-);
-
-
-$('memberProfileButton')
-.addEventListener(
-  'click',
-  showProfile
-);
-
-
-$('profileBack')
-.addEventListener(
-  'click',
-  async ()=>{
-
-    const {data} =
-    await supabaseClient.auth.getSession();
-
-    if(data.session){
-
-      showMember(
-        data.session.user
-      );
-
-    }
-
-  }
-);
-
-
-document
-.querySelectorAll('.memberHome')
-.forEach(button=>{
-
-  button.addEventListener(
-    'click',
-    showPublic
-  );
-
-});
-
-
-document
-.querySelectorAll('.public-link')
-.forEach(link=>{
-
-  link.addEventListener(
-    'click',
-    ()=>{
-
-      $('memberArea').style.display='none';
-      $('profilePage').style.display='none';
-      $('publicPage').style.display='block';
-
-    }
-  );
-
-});
-
-
-/* =========================
-   PHOTO
+  /* =========================
+   PHOTO DE PROFIL
 ========================= */
 
 function profilePhotoPath(user){
@@ -1759,13 +2093,40 @@ function profilePhotoPath(user){
 }
 
 
-function showProfilePhoto(url){
+function clearProfilePhoto(){
+
+  if(currentPhotoObjectUrl){
+
+    URL.revokeObjectURL(
+      currentPhotoObjectUrl
+    );
+
+    currentPhotoObjectUrl = null;
+
+  }
+
 
   const image =
   $('profilePhotoImage');
 
-  const placeholder =
-  $('profilePhotoPlaceholder');
+  image.removeAttribute('src');
+
+  image.style.display =
+  'none';
+
+
+  $('profilePhotoPlaceholder')
+  .style.display =
+  '';
+
+
+  $('photoButton').textContent =
+  '📷 Ajouter une photo';
+
+}
+
+
+function showProfilePhoto(url){
 
   if(currentPhotoObjectUrl){
 
@@ -1775,11 +2136,27 @@ function showProfilePhoto(url){
 
   }
 
-  currentPhotoObjectUrl = url;
 
-  image.src = url;
-  image.style.display = 'block';
-  placeholder.style.display = 'none';
+  currentPhotoObjectUrl =
+  url;
+
+
+  const image =
+  $('profilePhotoImage');
+
+
+  image.src =
+  url;
+
+
+  image.style.display =
+  'block';
+
+
+  $('profilePhotoPlaceholder')
+  .style.display =
+  'none';
+
 
   $('photoButton').textContent =
   '📷 Changer la photo';
@@ -1787,42 +2164,13 @@ function showProfilePhoto(url){
 }
 
 
-function clearProfilePhoto(){
-
-  const image =
-  $('profilePhotoImage');
-
-  image.removeAttribute('src');
-  image.style.display = 'none';
-
-  $('profilePhotoPlaceholder')
-  .style.display = '';
-
-  $('photoButton').textContent =
-  '📷 Ajouter une photo';
-
-}
-
+/* =========================
+   CHARGER PHOTO
+========================= */
 
 async function loadProfilePhoto(user){
 
   if(!user){
-    return;
-  }
-
-  const path =
-  profilePhotoPath(user);
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-  .storage
-  .from(PROFILE_BUCKET)
-  .download(path);
-
-  if(error){
 
     clearProfilePhoto();
 
@@ -1830,46 +2178,125 @@ async function loadProfilePhoto(user){
 
   }
 
-  const objectUrl =
-  URL.createObjectURL(data);
 
-  showProfilePhoto(
-    objectUrl
-  );
+  const path =
+  profilePhotoPath(user);
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+    .storage
+    .from(PROFILE_BUCKET)
+    .download(path);
+
+
+    if(error){
+
+      /*
+      Pas de photo = normal.
+      On affiche simplement
+      le personnage par défaut.
+      */
+
+      clearProfilePhoto();
+
+      return;
+
+    }
+
+
+    const objectUrl =
+    URL.createObjectURL(data);
+
+
+    showProfilePhoto(
+      objectUrl
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      'chargement-photo',
+      error
+    );
+
+
+    clearProfilePhoto();
+
+  }
 
 }
 
+
+/* =========================
+   BOUTON PHOTO
+========================= */
 
 $('photoButton')
 .addEventListener(
   'click',
   ()=>{
 
-    $('profilePhotoInput').click();
+    $('profilePhotoInput')
+    .click();
 
   }
 );
 
+
+/* =========================
+   ENVOI PHOTO
+========================= */
 
 $('profilePhotoInput')
 .addEventListener(
   'change',
   async event=>{
 
-    const file =
-    event.target.files?.[0];
+    const input =
+    event.target;
 
-    event.target.value = '';
+
+    const file =
+    input.files?.[0];
+
+
+    /*
+    Permet de sélectionner
+    à nouveau le même fichier.
+    */
+
+    input.value = '';
+
 
     if(!file){
       return;
     }
 
+
+    const status =
+    $('profileStatus');
+
+
+    /* =====================
+       TYPE IMAGE
+    ===================== */
+
     const allowedTypes = [
+
       'image/jpeg',
       'image/png',
       'image/webp'
+
     ];
+
 
     if(
       !allowedTypes.includes(
@@ -1877,64 +2304,86 @@ $('profilePhotoInput')
       )
     ){
 
-      $('profileStatus').className =
+      status.className =
       'profile-status error';
 
-      $('profileStatus').textContent =
-      'Choisis une image JPEG, PNG ou WEBP.';
+
+      status.textContent =
+      'Choisis une photo JPEG, PNG ou WEBP.';
+
 
       return;
 
     }
+
+
+    /* =====================
+       MAXIMUM 5 MO
+    ===================== */
 
     if(
       file.size >
       5 * 1024 * 1024
     ){
 
-      $('profileStatus').className =
+      status.className =
       'profile-status error';
 
-      $('profileStatus').textContent =
+
+      status.textContent =
       'La photo ne doit pas dépasser 5 Mo.';
 
+
       return;
 
     }
+
+
+    /* =====================
+       SESSION
+    ===================== */
 
     const {
-      data:{session}
+      data:{session},
+      error:sessionError
     } =
-    await supabaseClient.auth.getSession();
+    await supabaseClient.auth
+    .getSession();
 
-    if(!session){
 
-      $('profileStatus').className =
+    if(
+      sessionError ||
+      !session
+    ){
+
+      status.className =
       'profile-status error';
 
-      $('profileStatus').textContent =
+
+      status.textContent =
       'Tu dois être connecté pour ajouter une photo.';
+
 
       return;
 
     }
 
-    const status =
-    $('profileStatus');
 
     const button =
     $('photoButton');
 
-    const oldButtonText =
-    button.textContent;
+
+    button.disabled =
+    true;
+
 
     status.className =
     'profile-status';
 
+
     status.textContent =
     'Envoi de la photo…';
 
-    button.disabled = true;
 
     try{
 
@@ -1942,6 +2391,7 @@ $('profilePhotoInput')
       profilePhotoPath(
         session.user
       );
+
 
       const {
         error
@@ -1953,100 +2403,346 @@ $('profilePhotoInput')
         path,
         file,
         {
-          cacheControl:'3600',
-          contentType:file.type,
-          upsert:true
+
+          cacheControl:
+          '3600',
+
+          contentType:
+          file.type,
+
+          upsert:
+          true
+
         }
       );
 
+
       if(error){
+
         throw error;
+
       }
+
+
+      /*
+      On recharge directement
+      la photo privée.
+      */
 
       await loadProfilePhoto(
         session.user
       );
 
+
+      status.className =
+      'profile-status';
+
+
       status.textContent =
       '✓ Photo enregistrée.';
 
-    }
 
-    catch(error){
+      setTimeout(()=>{
 
-      console.error(
-        'photo-profil',
-        error
-      );
+        if(
+          status.textContent ===
+          '✓ Photo enregistrée.'
+        ){
 
-      status.className =
-      'profile-status error';
+          status.textContent = '';
 
-      status.textContent =
-      'Impossible d’enregistrer la photo : '
-      + error.message;
+        }
 
-      button.textContent =
-      oldButtonText;
-
-    }
-
-    finally{
-
-      button.disabled = false;
-
-    }
+      },3000);
 
   }
-);
+
+  catch(error){
+
+    console.error(
+      'photo-profil',
+      error
+    );
+
+
+    status.className =
+    'profile-status error';
+
+
+    status.textContent =
+    'Impossible d’enregistrer la photo : '
+    + (
+      error?.message ||
+      'erreur inconnue'
+    );
+
+  }
+
+  finally{
+
+    button.disabled =
+    false;
+
+  }
+
+});
+
 
 /* =========================
-   DECONNEXION
+   ENREGISTRER PROFIL
 ========================= */
 
-$('navLogout')
+$('profileForm')
 .addEventListener(
-  'click',
-  async ()=>{
+  'submit',
+  async event=>{
 
-    await supabaseClient.auth.signOut();
+    event.preventDefault();
 
-    cachedProfile = null;
-    cachedProfileUserId = null;
-    clearProfilePhoto();
 
-    setAuthUI(null);
+    const status =
+    $('profileStatus');
 
-    showPublic();
+
+    const saveButton =
+    $('profileSaveButton');
+
+
+    status.className =
+    'profile-status';
+
+
+    status.textContent =
+    'Enregistrement…';
+
+
+    saveButton.disabled =
+    true;
+
+
+    try{
+
+      /* =====================
+         SESSION
+      ===================== */
+
+      const {
+        data:{session},
+        error:sessionError
+      } =
+      await supabaseClient.auth
+      .getSession();
+
+
+      if(
+        sessionError ||
+        !session
+      ){
+
+        throw new Error(
+          'Ta session a expiré. Reconnecte-toi.'
+        );
+
+      }
+
+
+      /* =====================
+         INFORMATIONS
+      ===================== */
+
+      const payload = {
+
+        prenom:
+        $('profileFirstName')
+        .value
+        .trim(),
+
+        nom:
+        $('profileLastName')
+        .value
+        .trim(),
+
+        telephone:
+        $('profilePhone')
+        .value
+        .trim(),
+
+        dateNaissance:
+        $('profileBirthDate')
+        .value || null,
+
+        objectif:
+        $('profileGoal')
+        .value
+        .trim(),
+
+        contactUrgence:
+        $('profileEmergencyName')
+        .value
+        .trim(),
+
+        telephoneUrgence:
+        $('profileEmergencyPhone')
+        .value
+        .trim()
+
+      };
+
+
+      /* =====================
+         VERIFICATION
+      ===================== */
+
+      if(
+        !payload.prenom ||
+        !payload.nom
+      ){
+
+        throw new Error(
+          'Le prénom et le nom sont obligatoires.'
+        );
+
+      }
+
+
+      /* =====================
+         EDGE FUNCTION
+      ===================== */
+
+      const response =
+      await fetch(
+        `${SUPABASE_URL}/functions/v1/mon-profil`,
+        {
+
+          method:
+          'PATCH',
+
+          headers:{
+
+            'Authorization':
+            `Bearer ${session.access_token}`,
+
+            'apikey':
+            SUPABASE_KEY,
+
+            'Content-Type':
+            'application/json'
+
+          },
+
+          body:
+          JSON.stringify(
+            payload
+          )
+
+        }
+      );
+
+
+      const result =
+      await response
+      .json()
+      .catch(()=>({}));
+
+
+      if(!response.ok){
+
+        throw new Error(
+          result.error ||
+          `Erreur ${response.status}`
+        );
+
+      }
+
+
+      /* =====================
+         RECHARGER GRIST
+      ===================== */
+
+      const refreshed =
+      await loadMyProfile({
+        silent:true
+      });
+
+
+      if(refreshed){
+
+        renderProfile(
+          refreshed,
+          session.user
+        );
+
+      }
+
+
+      status.className =
+      'profile-status';
+
+
+      status.textContent =
+      '✓ Tes informations ont été enregistrées.';
+
+
+      setTimeout(()=>{
+
+        if(
+          status.textContent ===
+          '✓ Tes informations ont été enregistrées.'
+        ){
+
+          status.textContent = '';
+
+        }
+
+      },3500);
 
   }
-);
+
+  catch(error){
+
+    console.error(
+      'enregistrement-profil',
+      error
+    );
+
+
+    status.className =
+    'profile-status error';
+
+
+    status.textContent =
+    'Impossible d’enregistrer : '
+    + (
+      error?.message ||
+      'erreur inconnue'
+    );
+
+  }
+
+  finally{
+
+    saveButton.disabled =
+    false;
+
+  }
+
+});
 
 
 /* =========================
    MODALES
 ========================= */
 
-function openAuth(id){
-
-  document
-  .querySelectorAll('.auth-modal')
-  .forEach(modal=>{
-
-    modal.classList.remove('open');
-
-    modal.setAttribute(
-      'aria-hidden',
-      'true'
-    );
-
-  });
-
+function openModal(id){
 
   const modal =
   $(id);
 
-  modal.classList.add('open');
+
+  modal.classList.add(
+    'open'
+  );
+
 
   modal.setAttribute(
     'aria-hidden',
@@ -2056,12 +2752,16 @@ function openAuth(id){
 }
 
 
-function closeAuth(id){
+function closeModal(id){
 
   const modal =
   $(id);
 
-  modal.classList.remove('open');
+
+  modal.classList.remove(
+    'open'
+  );
+
 
   modal.setAttribute(
     'aria-hidden',
@@ -2071,55 +2771,151 @@ function closeAuth(id){
 }
 
 
+/* =========================
+   BOUTONS CONNEXION
+========================= */
+
 document
-.querySelectorAll('.js-signup')
+.querySelectorAll(
+  '.js-login'
+)
 .forEach(button=>{
 
   button.addEventListener(
     'click',
-    ()=>openAuth('signupModal')
+    ()=>{
+
+      openModal(
+        'loginModal'
+      );
+
+    }
   );
 
 });
 
 
 document
-.querySelectorAll('.js-login')
+.querySelectorAll(
+  '.js-signup'
+)
 .forEach(button=>{
 
   button.addEventListener(
     'click',
-    ()=>openAuth('loginModal')
+    ()=>{
+
+      openModal(
+        'signupModal'
+      );
+
+    }
   );
 
 });
 
+
+/* =========================
+   FERMER MODALES
+========================= */
 
 document
-.querySelectorAll('[data-close]')
+.querySelectorAll(
+  '[data-close]'
+)
 .forEach(button=>{
 
   button.addEventListener(
     'click',
-    ()=>closeAuth(
-      button.dataset.close
-    )
+    ()=>{
+
+      closeModal(
+        button.dataset.close
+      );
+
+    }
   );
 
 });
 
+
+$('signupModal')
+.addEventListener(
+  'click',
+  event=>{
+
+    if(
+      event.target ===
+      $('signupModal')
+    ){
+
+      closeModal(
+        'signupModal'
+      );
+
+    }
+
+  }
+);
+
+
+$('loginModal')
+.addEventListener(
+  'click',
+  event=>{
+
+    if(
+      event.target ===
+      $('loginModal')
+    ){
+
+      closeModal(
+        'loginModal'
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   PASSER LOGIN / INSCRIPTION
+========================= */
 
 $('goLogin')
 .addEventListener(
   'click',
-  ()=>openAuth('loginModal')
+  ()=>{
+
+    closeModal(
+      'signupModal'
+    );
+
+
+    openModal(
+      'loginModal'
+    );
+
+  }
 );
 
 
 $('goSignup')
 .addEventListener(
   'click',
-  ()=>openAuth('signupModal')
+  ()=>{
+
+    closeModal(
+      'loginModal'
+    );
+
+
+    openModal(
+      'signupModal'
+    );
+
+  }
 );
 
 
@@ -2134,11 +2930,14 @@ $('signupForm')
 
     event.preventDefault();
 
+
     const status =
     $('signupStatus');
 
+
     status.className =
     'auth-status';
+
 
     status.textContent =
     'Création du compte…';
@@ -2160,56 +2959,146 @@ $('signupForm')
     .value;
 
 
-    if(password !== password2){
+    if(
+      password !==
+      password2
+    ){
 
       status.className =
       'auth-status error';
 
+
       status.textContent =
-      'Les deux mots de passe ne correspondent pas.';
+      'Les deux mots de passe sont différents.';
+
 
       return;
 
     }
 
 
-    const {error} =
-    await supabaseClient.auth.signUp({
+    if(
+      password.length < 6
+    ){
 
-      email,
+      status.className =
+      'auth-status error';
 
-      password,
 
-      options:{
+      status.textContent =
+      'Le mot de passe doit contenir au moins 6 caractères.';
 
-        emailRedirectTo:
-        'https://jeanlouisaucarre.github.io/boxing-coach-widget/'
+
+      return;
+
+    }
+
+
+    try{
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient
+      .auth
+      .signUp({
+
+        email,
+        password,
+
+        options:{
+
+          emailRedirectTo:
+          window.location.origin +
+          window.location.pathname
+
+        }
+
+      });
+
+
+      if(error){
+
+        throw error;
 
       }
 
-    });
+
+      if(
+        data.session
+      ){
+
+        status.textContent =
+        '✓ Compte créé. Tu es connecté.';
 
 
-    if(error){
+        setAuthUI(
+          data.session
+        );
 
-      status.className =
-      'auth-status error';
 
-      status.textContent =
-      error.message;
+        cachedProfile =
+        null;
 
-      return;
 
-    }
+        cachedProfileUserId =
+        null;
+
+
+        loadMyProfile({
+          silent:true
+        });
+
+
+        loadProfilePhoto(
+          data.session.user
+        );
+
+
+        setTimeout(()=>{
+
+          closeModal(
+            'signupModal'
+          );
+
+
+          showMember(
+            data.session.user
+          );
+
+        },700);
+
+      }
+
+      else{
+
+        status.textContent =
+        '✓ Compte créé. Vérifie maintenant ton e-mail pour confirmer ton compte.';
+
+      }
+
+  }
+
+  catch(error){
+
+    console.error(
+      'signup',
+      error
+    );
+
+
+    status.className =
+    'auth-status error';
 
 
     status.textContent =
-    '✓ Compte créé. Vérifie ton e-mail pour confirmer ton inscription.';
-
-    event.target.reset();
+    error?.message ||
+    'Impossible de créer le compte.';
 
   }
-);
+
+});
 
 
 /* =========================
@@ -2223,112 +3112,324 @@ $('loginForm')
 
     event.preventDefault();
 
+
     const status =
     $('loginStatus');
 
+
     status.className =
     'auth-status';
+
 
     status.textContent =
     'Connexion…';
 
 
-    const {data,error} =
-    await supabaseClient.auth.signInWithPassword({
-
-      email:
-      $('loginEmail')
-      .value
-      .trim(),
-
-      password:
-      $('loginPassword')
-      .value
-
-    });
+    const email =
+    $('loginEmail')
+    .value
+    .trim();
 
 
-    if(error){
+    const password =
+    $('loginPassword')
+    .value;
 
-      status.className =
-      'auth-status error';
+
+    try{
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient
+      .auth
+      .signInWithPassword({
+
+        email,
+        password
+
+      });
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      if(
+        !data.session
+      ){
+
+        throw new Error(
+          'Session non créée.'
+        );
+
+      }
+
+
+      setAuthUI(
+        data.session
+      );
+
 
       status.textContent =
-      'Connexion impossible : '
-      + error.message;
-
-      return;
-
-    }
+      '✓ Connecté';
 
 
-    status.textContent =
-    '✓ Connecté.';
+      /*
+      Préchargement immédiat :
+      quand on ouvrira Mon profil,
+      les informations seront déjà là.
+      */
+
+      cachedProfile =
+      null;
 
 
-    setAuthUI(
-      data.session
-    );
-
-    loadMyProfile({silent:true});
-    loadProfilePhoto(data.user);
+      cachedProfileUserId =
+      null;
 
 
-    setTimeout(
-      ()=>{
+      loadMyProfile({
+        silent:true
+      });
 
-        closeAuth(
+
+      loadProfilePhoto(
+        data.user
+      );
+
+
+      setTimeout(()=>{
+
+        closeModal(
           'loginModal'
         );
+
 
         showMember(
           data.user
         );
 
-      },
-      500
-    );
+
+        status.textContent =
+        '';
+
+      },500);
 
   }
-);
+
+  catch(error){
+
+    console.error(
+      'login',
+      error
+    );
 
 
-/* =========================
-   SESSION
-========================= */
+    status.className =
+    'auth-status error';
 
-supabaseClient.auth
-.getSession()
-.then(({data})=>{
 
-  setAuthUI(
-    data.session
-  );
-
-  if(data.session){
-
-    loadMyProfile({silent:true});
-    loadProfilePhoto(data.session.user);
+    status.textContent =
+    error?.message ||
+    'Connexion impossible.';
 
   }
 
 });
 
 
-supabaseClient.auth
-.onAuthStateChange(
-  (_event,session)=>{
+/* =========================
+   DECONNEXION
+========================= */
+
+$('navLogout')
+.addEventListener(
+  'click',
+  async ()=>{
+
+    await supabaseClient
+    .auth
+    .signOut();
+
+
+    cachedProfile =
+    null;
+
+
+    cachedProfileUserId =
+    null;
+
+
+    clearProfilePhoto();
+
 
     setAuthUI(
-      session
+      null
     );
+
+
+    showPublic();
 
   }
 );
 
 
 /* =========================
-   CONTACT
+   NAV MON ESPACE
+========================= */
+
+$('navMember')
+.addEventListener(
+  'click',
+  async ()=>{
+
+    const {
+      data:{session}
+    } =
+    await supabaseClient.auth
+    .getSession();
+
+
+    if(session){
+
+      showMember(
+        session.user
+      );
+
+    }else{
+
+      openModal(
+        'loginModal'
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   NAV MON PROFIL
+========================= */
+
+$('navProfile')
+.addEventListener(
+  'click',
+  ()=>{
+
+    showProfile();
+
+  }
+);
+
+
+$('memberProfileButton')
+.addEventListener(
+  'click',
+  ()=>{
+
+    showProfile();
+
+  }
+);
+
+
+$('profileBack')
+.addEventListener(
+  'click',
+  async ()=>{
+
+    const {
+      data:{session}
+    } =
+    await supabaseClient.auth
+    .getSession();
+
+
+    if(session){
+
+      showMember(
+        session.user
+      );
+
+    }else{
+
+      showPublic();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   RETOUR ACCUEIL
+========================= */
+
+document
+.querySelectorAll(
+  '.memberHome'
+)
+.forEach(button=>{
+
+  button.addEventListener(
+    'click',
+    ()=>{
+
+      showPublic();
+
+    }
+  );
+
+});
+
+
+/* =========================
+   LIENS PUBLICS
+========================= */
+
+document
+.querySelectorAll(
+  '.public-link'
+)
+.forEach(link=>{
+
+  link.addEventListener(
+    'click',
+    ()=>{
+
+      /*
+      Il faut d'abord réafficher
+      la page publique.
+      */
+
+      $('memberArea')
+      .style.display =
+      'none';
+
+
+      $('profilePage')
+      .style.display =
+      'none';
+
+
+      $('publicPage')
+      .style.display =
+      'block';
+
+    }
+  );
+
+});
+
+
+/* =========================
+   FORMULAIRE CONTACT
 ========================= */
 
 $('contactForm')
@@ -2338,11 +3439,107 @@ $('contactForm')
 
     event.preventDefault();
 
+
     $('status').textContent =
-    'Le formulaire de contact sera relié au serveur sécurisé.';
+    '✓ Formulaire prêt. La connexion sécurisée au coach sera ajoutée ensuite.';
 
   }
 );
+
+
+/* =========================
+   CHANGEMENT AUTH
+========================= */
+
+supabaseClient
+.auth
+.onAuthStateChange(
+  (event,session)=>{
+
+    setAuthUI(
+      session
+    );
+
+
+    if(
+      event ===
+      'SIGNED_OUT'
+    ){
+
+      cachedProfile =
+      null;
+
+
+      cachedProfileUserId =
+      null;
+
+
+      clearProfilePhoto();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   SESSION AU DEMARRAGE
+========================= */
+
+async function initialiseApp(){
+
+  const {
+    data:{session},
+    error
+  } =
+  await supabaseClient.auth
+  .getSession();
+
+
+  if(error){
+
+    console.error(
+      'session',
+      error
+    );
+
+  }
+
+
+  setAuthUI(
+    session
+  );
+
+
+  if(
+    session?.user
+  ){
+
+    /*
+    Préchargement silencieux
+    du profil dès l'ouverture
+    du site.
+    */
+
+    loadMyProfile({
+      silent:true
+    });
+
+
+    loadProfilePhoto(
+      session.user
+    );
+
+  }
+
+}
+
+
+/* =========================
+   DEMARRAGE
+========================= */
+
+initialiseApp();
 
 </script>
 
