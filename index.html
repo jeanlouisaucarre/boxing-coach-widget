@@ -1471,7 +1471,7 @@ function renderProfile(p,user){
   })();
 
   $('profileFields').innerHTML = `
-    <form id="profileForm" style="max-width:none;display:grid;gap:14px">
+    <form id="profileForm" style="max-width:none;width:100%;grid-column:1 / -1;display:grid;gap:14px">
       <div class="profile-fields">
         <label class="profile-field"><small>Prénom</small><input id="profileFirstName" value="${escapeHtml(p.prenom || '')}" required></label>
         <label class="profile-field"><small>Nom</small><input id="profileLastName" value="${escapeHtml(p.nom || '')}" required></label>
