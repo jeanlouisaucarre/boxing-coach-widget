@@ -1076,11 +1076,15 @@ type="button">
 
 </button>
 
+<input
+id="profilePhotoInput"
+type="file"
+accept="image/jpeg,image/png,image/webp"
+hidden>
 
 <div class="photo-help">
 
-L'ajout de la photo sera activé
-à l'étape suivante.
+JPEG, PNG ou WEBP · 5 Mo maximum.
 
 </div>
 
@@ -1309,6 +1313,12 @@ window.supabase.createClient(
   SUPABASE_KEY
 );
 
+const PROFILE_BUCKET = 'photos-profils';
+const PROFILE_PHOTO_FILE = 'avatar';
+let cachedProfile = null;
+let cachedProfileUserId = null;
+let currentPhotoObjectUrl = null;
+
 
 /* =========================
    NAVIGATION
@@ -1365,7 +1375,36 @@ async function showProfile(){
     behavior:'smooth'
   });
 
-  await loadMyProfile();
+  const {data} =
+  await supabaseClient.auth.getSession();
+
+  const session = data.session;
+
+  if(!session){
+    return;
+  }
+
+  if(
+    cachedProfile &&
+    cachedProfileUserId === session.user.id
+  ){
+    renderProfile(
+      cachedProfile,
+      session.user
+    );
+
+    await Promise.all([
+      loadMyProfile({silent:true}),
+      loadProfilePhoto(session.user)
+    ]);
+
+    return;
+  }
+
+  await Promise.all([
+    loadMyProfile({silent:false}),
+    loadProfilePhoto(session.user)
+  ]);
 
 }
 
@@ -1401,29 +1440,77 @@ function setAuthUI(session){
    PROFIL
 ========================= */
 
-async function loadMyProfile(){
-
-  const status =
-  $('profileStatus');
+function renderProfile(p,user){
 
   const fields =
   $('profileFields');
 
+  const fullName =
+  `${p.prenom || ''} ${p.nom || ''}`.trim();
+
+  $('profileFullName').textContent =
+  fullName || 'Mon profil';
+
+  $('profileLevel').textContent =
+  p.niveau || 'Niveau non renseigné';
+
+  $('profileSideEmail').textContent =
+  p.email || user?.email || '';
+
+  $('profileTopEmail').textContent =
+  p.email || user?.email || '';
+
+  const items = [
+
+    ['Prénom',p.prenom],
+    ['Nom',p.nom],
+    ['E-mail',p.email],
+    ['Téléphone',p.telephone],
+    ['Date de naissance',p.dateNaissance],
+    ['Niveau',p.niveau],
+    ['Objectif principal',p.objectif],
+    ['Contact d’urgence',p.contactUrgence],
+    ['Téléphone urgence',p.telephoneUrgence]
+
+  ];
+
+  fields.innerHTML =
+  items.map(
+    ([label,value]) => `
+
+    <div class="profile-field">
+
+      <small>
+      ${escapeHtml(label)}
+      </small>
+
+      <strong>
+      ${escapeHtml(
+        formatProfileValue(value)
+      )}
+      </strong>
+
+    </div>
+
+    `
+  ).join('');
+
+}
+
+
+async function loadMyProfile({silent=false}={}){
+
+  const status =
+  $('profileStatus');
+
   status.className =
   'profile-status';
-
-  status.textContent =
-  'Chargement du profil…';
-
-  fields.innerHTML='';
-
 
   const {
     data:{session},
     error:sessionError
   } =
   await supabaseClient.auth.getSession();
-
 
   if(sessionError || !session){
 
@@ -1433,10 +1520,16 @@ async function loadMyProfile(){
     status.textContent =
     'Tu dois être connecté pour consulter ton profil.';
 
-    return;
+    return null;
 
   }
 
+  if(!silent && !cachedProfile){
+
+    status.textContent =
+    'Chargement du profil…';
+
+  }
 
   try{
 
@@ -1456,11 +1549,9 @@ async function loadMyProfile(){
       }
     );
 
-
     const result =
     await response.json()
     .catch(()=>({}));
-
 
     if(!response.ok){
 
@@ -1471,88 +1562,20 @@ async function loadMyProfile(){
 
     }
 
-
     const p =
     result.profil || {};
 
+    cachedProfile = p;
+    cachedProfileUserId = session.user.id;
 
-    /* IDENTITE A GAUCHE */
+    renderProfile(
+      p,
+      session.user
+    );
 
-    const fullName =
-    `${p.prenom || ''} ${p.nom || ''}`.trim();
+    status.textContent = '';
 
-
-    $('profileFullName').textContent =
-    fullName || 'Mon profil';
-
-
-    $('profileLevel').textContent =
-    p.niveau || 'Niveau non renseigné';
-
-
-    $('profileSideEmail').textContent =
-    p.email || session.user.email || '';
-
-
-    $('profileTopEmail').textContent =
-    p.email || session.user.email || '';
-
-
-    /* INFORMATIONS */
-
-    const items = [
-
-      ['Prénom',p.prenom],
-
-      ['Nom',p.nom],
-
-      ['E-mail',p.email],
-
-      ['Téléphone',p.telephone],
-
-      ['Date de naissance',p.dateNaissance],
-
-      ['Niveau',p.niveau],
-
-      ['Objectif principal',p.objectif],
-
-      [
-        'Contact d’urgence',
-        p.contactUrgence
-      ],
-
-      [
-        'Téléphone urgence',
-        p.telephoneUrgence
-      ]
-
-    ];
-
-
-    fields.innerHTML =
-    items.map(
-      ([label,value]) => `
-
-      <div class="profile-field">
-
-        <small>
-        ${escapeHtml(label)}
-        </small>
-
-        <strong>
-        ${escapeHtml(
-          formatProfileValue(value)
-        )}
-        </strong>
-
-      </div>
-
-      `
-    ).join('');
-
-
-    status.textContent =
-    '✓ Profil chargé.';
+    return p;
 
   }
 
@@ -1563,17 +1586,22 @@ async function loadMyProfile(){
       error
     );
 
-    status.className =
-    'profile-status error';
+    if(!cachedProfile){
 
-    status.textContent =
-    'Impossible de charger ton profil : '
-    + error.message;
+      status.className =
+      'profile-status error';
+
+      status.textContent =
+      'Impossible de charger ton profil : '
+      + error.message;
+
+    }
+
+    return null;
 
   }
 
 }
-
 
 function formatProfileValue(value){
 
@@ -1724,18 +1752,253 @@ document
    PHOTO
 ========================= */
 
+function profilePhotoPath(user){
+
+  return `${user.id}/${PROFILE_PHOTO_FILE}`;
+
+}
+
+
+function showProfilePhoto(url){
+
+  const image =
+  $('profilePhotoImage');
+
+  const placeholder =
+  $('profilePhotoPlaceholder');
+
+  if(currentPhotoObjectUrl){
+
+    URL.revokeObjectURL(
+      currentPhotoObjectUrl
+    );
+
+  }
+
+  currentPhotoObjectUrl = url;
+
+  image.src = url;
+  image.style.display = 'block';
+  placeholder.style.display = 'none';
+
+  $('photoButton').textContent =
+  '📷 Changer la photo';
+
+}
+
+
+function clearProfilePhoto(){
+
+  const image =
+  $('profilePhotoImage');
+
+  image.removeAttribute('src');
+  image.style.display = 'none';
+
+  $('profilePhotoPlaceholder')
+  .style.display = '';
+
+  $('photoButton').textContent =
+  '📷 Ajouter une photo';
+
+}
+
+
+async function loadProfilePhoto(user){
+
+  if(!user){
+    return;
+  }
+
+  const path =
+  profilePhotoPath(user);
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+  .storage
+  .from(PROFILE_BUCKET)
+  .download(path);
+
+  if(error){
+
+    clearProfilePhoto();
+
+    return;
+
+  }
+
+  const objectUrl =
+  URL.createObjectURL(data);
+
+  showProfilePhoto(
+    objectUrl
+  );
+
+}
+
+
 $('photoButton')
 .addEventListener(
   'click',
   ()=>{
 
-    alert(
-      "On va maintenant connecter ce bouton à l'ajout sécurisé de la photo de profil."
-    );
+    $('profilePhotoInput').click();
 
   }
 );
 
+
+$('profilePhotoInput')
+.addEventListener(
+  'change',
+  async event=>{
+
+    const file =
+    event.target.files?.[0];
+
+    event.target.value = '';
+
+    if(!file){
+      return;
+    }
+
+    const allowedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp'
+    ];
+
+    if(
+      !allowedTypes.includes(
+        file.type
+      )
+    ){
+
+      $('profileStatus').className =
+      'profile-status error';
+
+      $('profileStatus').textContent =
+      'Choisis une image JPEG, PNG ou WEBP.';
+
+      return;
+
+    }
+
+    if(
+      file.size >
+      5 * 1024 * 1024
+    ){
+
+      $('profileStatus').className =
+      'profile-status error';
+
+      $('profileStatus').textContent =
+      'La photo ne doit pas dépasser 5 Mo.';
+
+      return;
+
+    }
+
+    const {
+      data:{session}
+    } =
+    await supabaseClient.auth.getSession();
+
+    if(!session){
+
+      $('profileStatus').className =
+      'profile-status error';
+
+      $('profileStatus').textContent =
+      'Tu dois être connecté pour ajouter une photo.';
+
+      return;
+
+    }
+
+    const status =
+    $('profileStatus');
+
+    const button =
+    $('photoButton');
+
+    const oldButtonText =
+    button.textContent;
+
+    status.className =
+    'profile-status';
+
+    status.textContent =
+    'Envoi de la photo…';
+
+    button.disabled = true;
+
+    try{
+
+      const path =
+      profilePhotoPath(
+        session.user
+      );
+
+      const {
+        error
+      } =
+      await supabaseClient
+      .storage
+      .from(PROFILE_BUCKET)
+      .upload(
+        path,
+        file,
+        {
+          cacheControl:'3600',
+          contentType:file.type,
+          upsert:true
+        }
+      );
+
+      if(error){
+        throw error;
+      }
+
+      await loadProfilePhoto(
+        session.user
+      );
+
+      status.textContent =
+      '✓ Photo enregistrée.';
+
+    }
+
+    catch(error){
+
+      console.error(
+        'photo-profil',
+        error
+      );
+
+      status.className =
+      'profile-status error';
+
+      status.textContent =
+      'Impossible d’enregistrer la photo : '
+      + error.message;
+
+      button.textContent =
+      oldButtonText;
+
+    }
+
+    finally{
+
+      button.disabled = false;
+
+    }
+
+  }
+);
 
 /* =========================
    DECONNEXION
@@ -1747,6 +2010,10 @@ $('navLogout')
   async ()=>{
 
     await supabaseClient.auth.signOut();
+
+    cachedProfile = null;
+    cachedProfileUserId = null;
+    clearProfilePhoto();
 
     setAuthUI(null);
 
@@ -2003,6 +2270,9 @@ $('loginForm')
       data.session
     );
 
+    loadMyProfile({silent:true});
+    loadProfilePhoto(data.user);
+
 
     setTimeout(
       ()=>{
@@ -2034,6 +2304,13 @@ supabaseClient.auth
   setAuthUI(
     data.session
   );
+
+  if(data.session){
+
+    loadMyProfile({silent:true});
+    loadProfilePhoto(data.session.user);
+
+  }
 
 });
 
