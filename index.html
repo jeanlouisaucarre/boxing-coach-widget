@@ -85,19 +85,12 @@ nav{
   color:#090b0c;
 }
 
-.btn:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
-
-/* Boutons connectés cachés par défaut */
 .nav-member,
 .nav-profile,
 .nav-logout{
   display:none;
 }
 
-/* Connecté */
 body.logged-in .nav-member,
 body.logged-in .nav-profile,
 body.logged-in .nav-logout{
@@ -109,38 +102,14 @@ body.logged-in .js-signup{
   display:none;
 }
 
-/*
-=========================================================
-ABONNEMENT ACTIF
 
-Quand l'utilisateur possède un abonnement actif,
-on masque le menu commercial/public.
-
-Le contrôle réel des données privées doit rester
-également côté serveur.
-=========================================================
-*/
-
-body.subscription-active .public-nav-link{
-  display:none;
-}
-
-
-/* =====================================================
-   ACCUEIL
-===================================================== */
+/* ACCUEIL */
 
 .hero{
   min-height:600px;
   background:
-    linear-gradient(
-      90deg,
-      rgba(2,6,9,.96) 0%,
-      rgba(2,6,9,.73) 42%,
-      rgba(2,6,9,.08) 75%
-    ),
+    linear-gradient(90deg,rgba(2,6,9,.96) 0%,rgba(2,6,9,.73) 42%,rgba(2,6,9,.08) 75%),
     url('salle-boxe.jpg') center/cover no-repeat;
-
   display:flex;
   align-items:flex-end;
 }
@@ -170,10 +139,7 @@ body.subscription-active .public-nav-link{
 
 .hero h1 span{color:var(--accent)}
 
-.hero h2{
-  font-size:27px;
-  margin:0 0 12px;
-}
+.hero h2{font-size:27px;margin:0 0 12px}
 
 .hero p{
   color:#d2d7da;
@@ -227,15 +193,9 @@ section{
 
 .card{min-height:250px}
 
-.icon{
-  font-size:32px;
-  margin-bottom:30px;
-}
+.icon{font-size:32px;margin-bottom:30px}
 
-.card h3{
-  font-size:24px;
-  margin:0 0 10px;
-}
+.card h3{font-size:24px;margin:0 0 10px}
 
 .card p{
   color:var(--muted);
@@ -286,10 +246,7 @@ section{
   padding:30px;
 }
 
-.coaching-box b{
-  display:block;
-  margin-bottom:12px;
-}
+.coaching-box b{display:block;margin-bottom:12px}
 
 .coaching-box span{
   color:var(--muted);
@@ -303,7 +260,6 @@ section{
   gap:60px;
 }
 
-/* Ligne conservée exactement comme avant */
 .community::before{
   content:"";
   position:absolute;
@@ -322,10 +278,7 @@ section{
   gap:28px;
 }
 
-.value b{
-  display:block;
-  margin-bottom:6px;
-}
+.value b{display:block;margin-bottom:6px}
 
 .value span{
   color:var(--muted);
@@ -344,8 +297,7 @@ form{
   max-width:650px;
 }
 
-input,
-textarea{
+input,textarea{
   width:100%;
   background:#0d1418;
   border:1px solid #273137;
@@ -369,9 +321,7 @@ button{font:inherit}
 }
 
 
-/* =====================================================
-   ESPACE MEMBRE
-===================================================== */
+/* ESPACE MEMBRE */
 
 .app-page{
   display:none;
@@ -444,28 +394,8 @@ button{font:inherit}
   color:var(--muted);
 }
 
-/* Cartes réservées à un abonnement actif */
-.subscription-only{
-  display:none;
-}
 
-body.subscription-active .subscription-only{
-  display:block;
-}
-
-/* Information affichée sans abonnement */
-.no-subscription-only{
-  display:block;
-}
-
-body.subscription-active .no-subscription-only{
-  display:none;
-}
-
-
-/* =====================================================
-   PROFIL
-===================================================== */
+/* PAGE PROFIL */
 
 .profile-layout{
   display:grid;
@@ -474,20 +404,12 @@ body.subscription-active .no-subscription-only{
   align-items:start;
 }
 
-.profile-identity,
-.profile-information{
+.profile-identity{
   background:linear-gradient(180deg,#11181d,#080d10);
   border:1px solid var(--line);
   border-radius:14px;
-}
-
-.profile-identity{
   padding:30px 24px;
   text-align:center;
-}
-
-.profile-information{
-  padding:28px;
 }
 
 .profile-photo{
@@ -540,6 +462,13 @@ body.subscription-active .no-subscription-only{
   margin-top:10px;
 }
 
+.profile-information{
+  background:linear-gradient(180deg,#11181d,#080d10);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:28px;
+}
+
 .profile-information h2{
   margin:0 0 6px;
   font-size:28px;
@@ -557,13 +486,7 @@ body.subscription-active .no-subscription-only{
   font-weight:800;
 }
 
-.profile-status.error{
-  color:#ff7474;
-}
-
-.profile-form{
-  max-width:none;
-}
+.profile-status.error{color:#ff7474}
 
 .profile-fields{
   display:grid;
@@ -572,59 +495,26 @@ body.subscription-active .no-subscription-only{
 }
 
 .profile-field{
-  min-width:0;
+  background:#0d1418;
+  border:1px solid #273137;
+  border-radius:9px;
+  padding:16px;
+  min-height:75px;
 }
 
-.profile-field.full{
-  grid-column:1/-1;
-}
-
-.profile-field label{
+.profile-field small{
   display:block;
   color:var(--muted);
-  font-size:12px;
-  margin:0 0 7px;
+  margin-bottom:7px;
 }
 
-.profile-field input,
-.profile-field textarea{
-  margin:0;
-}
-
-.profile-field textarea{
-  min-height:100px;
-}
-
-.profile-readonly{
-  width:100%;
-  min-height:52px;
-  display:flex;
-  align-items:center;
-  background:#0a0f12;
-  border:1px solid #273137;
-  color:#dce1e4;
-  padding:15px;
-  border-radius:8px;
-}
-
-.profile-save{
-  margin-top:20px;
-}
-
-.profile-security{
-  margin-top:18px;
-  padding:14px;
-  border:1px solid #273137;
-  border-radius:8px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
+.profile-field strong{
+  display:block;
+  word-break:break-word;
 }
 
 
-/* =====================================================
-   AUTH
-===================================================== */
+/* AUTH */
 
 .auth-modal{
   position:fixed;
@@ -702,200 +592,84 @@ footer{
   font-size:13px;
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media(max-width:900px){
-
-  .links a:not(.btn){
-    display:none;
-  }
-
-  .links{
-    gap:7px;
-  }
-
-  .links .btn{
-    padding:10px 11px;
-    font-size:12px;
-  }
-
-  .brand{
-    font-size:20px;
-  }
-
-  .member-grid,
-  .cards,
-  .community,
-  .coaching-grid,
-  .profile-fields{
-    grid-template-columns:1fr;
-  }
-
-  .profile-layout{
-    grid-template-columns:1fr;
-  }
-
-  .profile-field.full{
-    grid-column:auto;
-  }
-
-  .page-head{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .features{
-    grid-template-columns:1fr 1fr;
-  }
+  .links a:not(.btn){display:none}
+  .links{gap:7px}
+  .links .btn{padding:10px 11px;font-size:12px}
+  .brand{font-size:20px}
+  .member-grid{grid-template-columns:1fr}
+  .profile-layout{grid-template-columns:1fr}
+  .profile-fields{grid-template-columns:1fr}
+  .page-head{align-items:flex-start;flex-direction:column}
+  .cards{grid-template-columns:1fr}
+  .community{grid-template-columns:1fr}
+  .coaching-grid{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr 1fr}
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
 <header>
-
 <div class="wrap">
-
 <nav>
 
 <div>
-
-<div class="brand">
-🥊 BOXING <b>COACH</b>
+  <div class="brand">🥊 BOXING <b>COACH</b></div>
+  <div class="tag">DISCIPLINE · PROGRESSION · COMMUNAUTÉ</div>
 </div>
-
-<div class="tag">
-DISCIPLINE · PROGRESSION · COMMUNAUTÉ
-</div>
-
-</div>
-
 
 <div class="links">
 
+<a href="#accueil" class="public-link">Accueil</a>
+<a href="#offres" class="public-link">Nos cours</a>
+<a href="#coaching" class="public-link">Coaching</a>
+<a href="#contact" class="public-link">Contact</a>
 
-<!-- MENU PUBLIC -->
-
-<a
-href="#accueil"
-class="public-link public-nav-link">
-Accueil
-</a>
-
-
-<a
-href="#offres"
-class="public-link public-nav-link">
-Nos cours
-</a>
-
-
-<a
-href="#coaching"
-class="public-link public-nav-link">
-Coaching
-</a>
-
-
-<a
-href="#contact"
-class="public-link public-nav-link">
-Contact
-</a>
-
-
-<!-- NON CONNECTE -->
-
-<button
-class="btn js-login"
-type="button">
+<button class="btn js-login" type="button">
 Se connecter
 </button>
 
-
-<button
-class="btn primary js-signup"
-type="button">
+<button class="btn primary js-signup" type="button">
 Créer un compte
 </button>
 
-
-<!-- CONNECTE
-     IMPORTANT :
-     MON PROFIL EST MAINTENANT AVANT MON ESPACE
--->
-
-<button
-class="btn nav-profile"
-id="navProfile"
-type="button">
+<button class="btn nav-profile" id="navProfile" type="button">
 👤 Mon profil
 </button>
 
-
-<button
-class="btn nav-member"
-id="navMember"
-type="button">
+<button class="btn nav-member" id="navMember" type="button">
 Mon espace
 </button>
 
-
-<button
-class="btn nav-logout"
-id="navLogout"
-type="button">
+<button class="btn nav-logout" id="navLogout" type="button">
 Se déconnecter
 </button>
-
 
 </div>
 
 </nav>
-
 </div>
-
 </header>
 
 
 <main>
 
-
-<!-- =====================================================
-     PAGE PUBLIQUE
-===================================================== -->
+<!-- ========================= -->
+<!-- PAGE PUBLIQUE -->
+<!-- ========================= -->
 
 <div id="publicPage">
 
-
-<section
-class="hero"
-id="accueil">
-
+<section class="hero" id="accueil">
 <div class="hero-inner">
 
-<div class="eyebrow">
-— BIENVENUE AU CLUB —
-</div>
+<div class="eyebrow">— BIENVENUE AU CLUB —</div>
 
-<h1>
-BOXING <span>COACH</span>
-</h1>
+<h1>BOXING <span>COACH</span></h1>
 
-<h2>
-Plus qu’un sport, un état d’esprit.
-</h2>
+<h2>Plus qu’un sport, un état d’esprit.</h2>
 
 <p>
 Entraînez-vous. Progressez. Dépassez-vous.
@@ -903,186 +677,102 @@ Rejoignez un club où discipline, respect et dépassement de soi
 sont au cœur de chaque entraînement.
 </p>
 
-
 <div class="actions">
 
-<button
-class="btn primary js-signup"
-type="button">
+<button class="btn primary js-signup" type="button">
 👤 Créer mon compte
 </button>
 
-
-<button
-class="btn js-login"
-type="button">
+<button class="btn js-login" type="button">
 → Se connecter
 </button>
 
 </div>
-
 </div>
-
 </section>
 
 
-<!-- AVANTAGES -->
-
 <div class="wrap features">
-
 
 <div class="feature">
 <strong>🏋️ PROGRESSION</strong>
 <small>À votre rythme</small>
 </div>
 
-
 <div class="feature">
 <strong>👥 COMMUNAUTÉ</strong>
 <small>Un esprit famille</small>
 </div>
-
 
 <div class="feature">
 <strong>♥ BIEN-ÊTRE</strong>
 <small>Mental et physique</small>
 </div>
 
-
 <div class="feature">
 <strong>🏆 RÉSULTATS</strong>
 <small>Des objectifs concrets</small>
 </div>
 
-
 </div>
 
 
-<!-- =====================================================
-     NOS COURS
-===================================================== -->
-
-<section
-id="offres"
-class="course-section">
-
+<section id="offres" class="course-section">
 <div class="wrap">
 
-<div class="eyebrow">
-— NOS COURS —
-</div>
-
+<div class="eyebrow">— NOS COURS —</div>
 
 <h2 style="font-size:44px;margin:8px 0 28px">
-
 ENTRAÎNEZ-VOUS
-
-<span style="color:var(--accent)">
-À VOTRE RYTHME
-</span>
-
+<span style="color:var(--accent)">À VOTRE RYTHME</span>
 </h2>
-
 
 <div class="cards">
 
-
 <article class="card">
-
-<div class="icon">
-👥
-</div>
-
-<h3>
-COURS COLLECTIFS
-</h3>
-
+<div class="icon">👥</div>
+<h3>COURS COLLECTIFS</h3>
 <p>
 Des entraînements pour tous niveaux,
 dans une ambiance motivante.
 </p>
-
-<a href="#contact">
-Découvrir nos cours →
-</a>
-
+<a href="#contact">Découvrir nos cours →</a>
 </article>
 
-
 <article class="card">
-
-<div class="icon">
-🥊
-</div>
-
-<h3>
-TOUS NIVEAUX
-</h3>
-
+<div class="icon">🥊</div>
+<h3>TOUS NIVEAUX</h3>
 <p>
 Débutant, intermédiaire ou avancé :
 chacun progresse avec un cadre adapté.
 </p>
-
-<a href="#contact">
-Une question ? →
-</a>
-
+<a href="#contact">Une question ? →</a>
 </article>
 
-
 <article class="card">
-
-<div class="icon">
-💳
-</div>
-
-<h3>
-ABONNEMENTS
-</h3>
-
+<div class="icon">💳</div>
+<h3>ABONNEMENTS</h3>
 <p>
 Créez d’abord votre espace.
 Une fois votre abonnement actif,
 vos accès membre se débloquent.
 </p>
-
-<a href="#contact">
-Voir les formules →
-</a>
-
+<a href="#contact">Voir les formules →</a>
 </article>
 
-
 </div>
-
 </div>
-
 </section>
 
 
-<!-- =====================================================
-     COACHING
-===================================================== -->
-
-<section
-id="coaching"
-class="coaching-section">
-
+<section id="coaching" class="coaching-section">
 <div class="wrap coaching-grid">
-
 
 <div>
 
-<div class="eyebrow">
-— COACHING INDIVIDUEL —
-</div>
+<div class="eyebrow">— COACHING INDIVIDUEL —</div>
 
-
-<h2>
-UN SUIVI <span>SUR MESURE</span>
-</h2>
-
+<h2>UN SUIVI <span>SUR MESURE</span></h2>
 
 <p>
 Un accompagnement personnalisé selon vos objectifs,
@@ -1090,27 +780,17 @@ votre niveau et votre rythme.
 Les séances peuvent avoir lieu en salle ou en extérieur.
 </p>
 
-
 <div class="actions">
-
-<a
-class="btn primary"
-href="#contact">
-
+<a class="btn primary" href="#contact">
 Demander un coaching
-
 </a>
-
 </div>
 
 </div>
-
 
 <div class="coaching-box">
 
-<b>
-🎯 VOTRE OBJECTIF, VOTRE PROGRAMME
-</b>
+<b>🎯 VOTRE OBJECTIF, VOTRE PROGRAMME</b>
 
 <span>
 Séance unique ou accompagnement sur plusieurs mois :
@@ -1120,30 +800,17 @@ technique, cardio, puissance, préparation ou progression générale.
 </div>
 
 </div>
-
 </section>
 
 
-<!-- =====================================================
-     COMMUNAUTE
-===================================================== -->
-
 <section>
-
 <div class="wrap community">
-
 
 <div>
 
-<div class="eyebrow">
-— PLUS QU’UN SPORT
-</div>
+<div class="eyebrow">— PLUS QU’UN SPORT</div>
 
-
-<h2>
-UNE <span>COMMUNAUTÉ</span>
-</h2>
-
+<h2>UNE <span>COMMUNAUTÉ</span></h2>
 
 <p>
 Une fois membre actif, retrouvez le planning,
@@ -1152,449 +819,199 @@ vos messages, votre progression et vos accompagnements
 individuels depuis le même espace.
 </p>
 
-
 <div class="actions">
-
-<button
-class="btn primary js-signup"
-type="button">
-
+<button class="btn primary js-signup" type="button">
 Créer mon compte
-
 </button>
-
-
-<a
-class="btn"
-href="#contact">
-
-✉ Nous contacter
-
-</a>
-
+<a class="btn" href="#contact">✉ Nous contacter</a>
 </div>
 
 </div>
-
 
 <div class="values">
 
-
 <div class="value">
-
 <b>🛡️ RESPECT</b>
-
-<span>
-Une valeur essentielle dans et hors du ring.
-</span>
-
+<span>Une valeur essentielle dans et hors du ring.</span>
 </div>
 
-
 <div class="value">
-
 <b>📈 PROGRESSION</b>
-
-<span>
-Des entraînements adaptés à tous les niveaux.
-</span>
-
+<span>Des entraînements adaptés à tous les niveaux.</span>
 </div>
 
-
 <div class="value">
-
 <b>👥 ESPRIT CLUB</b>
-
-<span>
-Une ambiance conviviale et motivante.
-</span>
-
+<span>Une ambiance conviviale et motivante.</span>
 </div>
-
 
 <div class="value">
-
 <b>♥ DÉPASSEMENT</b>
-
-<span>
-Se fixer des objectifs et aller plus loin.
-</span>
-
-</div>
-
-
+<span>Se fixer des objectifs et aller plus loin.</span>
 </div>
 
 </div>
-
+</div>
 </section>
 
 
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section
-class="contact"
-id="contact">
-
+<section class="contact" id="contact">
 <div class="wrap">
 
-<div class="eyebrow">
-— UNE QUESTION ?
-</div>
+<div class="eyebrow">— UNE QUESTION ?</div>
 
-<h2>
-CONTACTER LE COACH
-</h2>
+<h2>CONTACTER LE COACH</h2>
 
 <p style="color:var(--muted)">
 Le formulaire sera relié au serveur sécurisé.
 </p>
 
-
 <form id="contactForm">
 
+<input id="prenom" placeholder="Prénom" required>
+<input id="nom" placeholder="Nom" required>
+<input id="email" type="email" placeholder="Adresse e-mail" required>
+<input id="telephone" placeholder="Téléphone">
+<input id="sujet" placeholder="Sujet">
 
-<input
-id="prenom"
-placeholder="Prénom"
-required>
-
-
-<input
-id="nom"
-placeholder="Nom"
-required>
-
-
-<input
-id="email"
-type="email"
-placeholder="Adresse e-mail"
-required>
-
-
-<input
-id="telephone"
-placeholder="Téléphone">
-
-
-<input
-id="sujet"
-placeholder="Sujet">
-
-
-<textarea
-id="message"
+<textarea id="message"
 placeholder="Votre message"
 required></textarea>
 
-
-<button
-class="btn primary"
-type="submit">
-
+<button class="btn primary" type="submit">
 Envoyer ma demande
-
 </button>
 
-
-<div
-class="status"
-id="status">
-</div>
-
+<div class="status" id="status"></div>
 
 </form>
 
 </div>
-
 </section>
 
 </div>
 
 
-<!-- =====================================================
-     MON ESPACE
-===================================================== -->
+<!-- ========================= -->
+<!-- MON ESPACE -->
+<!-- ========================= -->
 
-<section
-class="app-page"
-id="memberArea">
-
+<section class="app-page" id="memberArea">
 <div class="wrap">
-
 
 <div class="page-head">
 
-
 <div>
-
-<div class="eyebrow">
-— ESPACE ADHÉRENT —
-</div>
-
+<div class="eyebrow">— ESPACE ADHÉRENT —</div>
 
 <h1>
 MON <span>ESPACE</span>
 </h1>
 
-
-<div
-class="member-email"
-id="memberEmail">
+<div class="member-email" id="memberEmail"></div>
 </div>
 
-</div>
-
-
-<button
-class="btn memberHome no-subscription-only"
-type="button">
-
+<button class="btn memberHome" type="button">
 ← Accueil
-
 </button>
 
-
 </div>
 
 
-<!-- =====================================================
-     MESSAGE SANS ABONNEMENT
-===================================================== -->
-
-<div
-class="member-note no-subscription-only"
-id="noSubscriptionMessage">
-
-<strong style="color:white">
-💳 Compte créé — abonnement non actif
-</strong>
-
-<br><br>
-
-Ton compte Boxing Coach est bien créé.
-Tu peux gérer ton profil et consulter les informations du club.
-
-Les fonctions réservées aux adhérents seront disponibles
-lorsqu’un abonnement sera actif.
-
-</div>
-
-
-<div class="member-grid"
-style="margin-top:24px">
-
-
-<!-- PROFIL : TOUJOURS ACCESSIBLE -->
+<div class="member-grid">
 
 <div class="member-card">
-
-<div class="mi">
-👤
-</div>
-
-<h3>
-MON PROFIL
-</h3>
-
+<div class="mi">👤</div>
+<h3>MON PROFIL</h3>
 <p>
-Consulte et modifie tes informations personnelles
+Consulte tes informations personnelles
 et ta photo de profil.
 </p>
-
-<button
-id="memberProfileButton"
-type="button">
-
+<button id="memberProfileButton" type="button">
 Voir mon profil →
-
 </button>
-
 </div>
 
-
-<!-- ABONNEMENT : TOUJOURS VISIBLE -->
 
 <div class="member-card">
-
-<div class="mi">
-💳
-</div>
-
-<h3>
-MON ABONNEMENT
-</h3>
-
-<p id="subscriptionCardText">
-Consulte ton abonnement et son statut.
-</p>
-
-<button type="button">
-Bientôt disponible →
-</button>
-
+<div class="mi">💳</div>
+<h3>MON ABONNEMENT</h3>
+<p>Consulte ton abonnement et son statut.</p>
+<button type="button">Bientôt disponible →</button>
 </div>
 
 
-<!-- =====================================================
-     RESERVE ABONNEMENT ACTIF
-===================================================== -->
-
-
-<div class="member-card subscription-only">
-
-<div class="mi">
-📅
-</div>
-
-<h3>
-PLANNING & RÉSERVATIONS
-</h3>
-
-<p>
-Consulte les cours et réserve ta place.
-</p>
-
-<button type="button">
-Bientôt disponible →
-</button>
-
+<div class="member-card">
+<div class="mi">📅</div>
+<h3>PLANNING & RÉSERVATIONS</h3>
+<p>Consulte les cours et réserve ta place.</p>
+<button type="button">Bientôt disponible →</button>
 </div>
 
 
-<div class="member-card subscription-only">
-
-<div class="mi">
-🥊
-</div>
-
-<h3>
-COACHING INDIVIDUEL
-</h3>
-
+<div class="member-card">
+<div class="mi">🥊</div>
+<h3>COACHING INDIVIDUEL</h3>
 <p>
 Retrouve tes accompagnements
 et tes prochaines séances.
 </p>
-
-<button type="button">
-Bientôt disponible →
-</button>
-
+<button type="button">Bientôt disponible →</button>
 </div>
 
 
-<div class="member-card subscription-only">
-
-<div class="mi">
-📈
-</div>
-
-<h3>
-MA PROGRESSION
-</h3>
-
-<p>
-Suis tes évaluations et tes objectifs.
-</p>
-
-<button type="button">
-Bientôt disponible →
-</button>
-
+<div class="member-card">
+<div class="mi">📈</div>
+<h3>MA PROGRESSION</h3>
+<p>Suis tes évaluations et tes objectifs.</p>
+<button type="button">Bientôt disponible →</button>
 </div>
 
 
-<div class="member-card subscription-only">
-
-<div class="mi">
-🎒
-</div>
-
-<h3>
-MON ÉQUIPEMENT
-</h3>
-
+<div class="member-card">
+<div class="mi">🎒</div>
+<h3>MON ÉQUIPEMENT</h3>
 <p>
 Retrouve le matériel actuellement prêté par le club.
 </p>
-
-<button type="button">
-Bientôt disponible →
-</button>
-
+<button type="button">Bientôt disponible →</button>
 </div>
 
 
-<!-- SALONS SPECIAUX -->
-
-<div class="member-card subscription-only">
-
-<div class="mi">
-👥
-</div>
-
-<h3>
-SALONS MEMBRES
-</h3>
-
-<p>
-Accède aux salons réservés aux adhérents
-ayant un abonnement actif.
-</p>
-
-<button type="button">
-Voir mes salons →
-</button>
-
+<div class="member-card">
+<div class="mi">👥</div>
+<h3>SALONS</h3>
+<p>Échange avec la communauté dans tes salons.</p>
+<button type="button">Bientôt disponible →</button>
 </div>
 
 
-<div class="member-card subscription-only">
-
-<div class="mi">
-✉️
-</div>
-
-<h3>
-MESSAGES PRIVÉS
-</h3>
-
-<p>
-Retrouve tes conversations privées.
-</p>
-
-<button type="button">
-Bientôt disponible →
-</button>
-
-</div>
-
-
+<div class="member-card">
+<div class="mi">✉️</div>
+<h3>MESSAGES PRIVÉS</h3>
+<p>Retrouve tes conversations privées.</p>
+<button type="button">Bientôt disponible →</button>
 </div>
 
 </div>
 
+
+<div class="member-note">
+Ton espace Boxing Coach est connecté à ton compte.
+</div>
+
+</div>
 </section>
 
 
-<!-- =====================================================
-     MON PROFIL
-===================================================== -->
+<!-- ========================= -->
+<!-- PAGE MON PROFIL -->
+<!-- ========================= -->
 
-<section
-class="app-page"
-id="profilePage">
-
+<section class="app-page" id="profilePage">
 <div class="wrap">
 
-
 <div class="page-head">
-
 
 <div>
 
@@ -1602,29 +1019,17 @@ id="profilePage">
 — ESPACE ADHÉRENT —
 </div>
 
-
 <h1>
 MON <span>PROFIL</span>
 </h1>
 
-
-<div
-class="member-email"
-id="profileTopEmail">
-</div>
+<div class="member-email" id="profileTopEmail"></div>
 
 </div>
 
-
-<button
-class="btn"
-id="profileBack"
-type="button">
-
+<button class="btn" id="profileBack" type="button">
 ← Mon espace
-
 </button>
-
 
 </div>
 
@@ -1632,23 +1037,18 @@ type="button">
 <div class="profile-layout">
 
 
-<!-- PHOTO -->
+<!-- PHOTO + IDENTITE -->
 
 <div class="profile-identity">
 
-
 <div class="profile-photo">
-
 
 <span id="profilePhotoPlaceholder">
 👤
 </span>
 
-
-<img
-id="profilePhotoImage"
+<img id="profilePhotoImage"
 alt="Photo de profil">
-
 
 </div>
 
@@ -1657,16 +1057,12 @@ alt="Photo de profil">
 Mon profil
 </h2>
 
-
-<div
-class="profile-level"
+<div class="profile-level"
 id="profileLevel">
 —
 </div>
 
-
-<div
-class="profile-small-email"
+<div class="profile-small-email"
 id="profileSideEmail">
 </div>
 
@@ -1680,18 +1076,15 @@ type="button">
 
 </button>
 
-
 <input
 id="profilePhotoInput"
 type="file"
 accept="image/jpeg,image/png,image/webp"
 hidden>
 
-
 <div class="photo-help">
 
-JPEG, PNG ou WEBP · 5 Mo maximum.<br>
-Ta photo reste dans ton espace sécurisé.
+JPEG, PNG ou WEBP · 5 Mo maximum.
 
 </div>
 
@@ -1702,204 +1095,41 @@ Ta photo reste dans ton espace sécurisé.
 
 <div class="profile-information">
 
-
 <h2>
 MES INFORMATIONS
 </h2>
 
-
 <p class="profile-description">
-Tu peux modifier tes informations personnelles ci-dessous.
+Les informations de ton profil Boxing Coach.
 </p>
 
-
-<div
-class="profile-status"
+<div class="profile-status"
 id="profileStatus">
 </div>
 
-
-<form
-class="profile-form"
-id="profileForm">
-
-
-<div class="profile-fields">
-
-
-<div class="profile-field">
-
-<label for="profileFirstName">
-Prénom
-</label>
-
-<input
-id="profileFirstName"
-type="text"
-autocomplete="given-name"
-required>
-
-</div>
-
-
-<div class="profile-field">
-
-<label for="profileLastName">
-Nom
-</label>
-
-<input
-id="profileLastName"
-type="text"
-autocomplete="family-name"
-required>
-
-</div>
-
-
-<div class="profile-field">
-
-<label>
-Adresse e-mail
-</label>
-
-<div
-class="profile-readonly"
-id="profileEmail">
-—
-</div>
-
-</div>
-
-
-<div class="profile-field">
-
-<label>
-Niveau
-</label>
-
-<div
-class="profile-readonly"
-id="profileLevelField">
-—
-</div>
-
-</div>
-
-
-<div class="profile-field">
-
-<label for="profilePhone">
-Téléphone
-</label>
-
-<input
-id="profilePhone"
-type="tel"
-autocomplete="tel">
-
-</div>
-
-
-<div class="profile-field">
-
-<label for="profileBirthDate">
-Date de naissance
-</label>
-
-<input
-id="profileBirthDate"
-type="date">
-
-</div>
-
-
-<div class="profile-field full">
-
-<label for="profileGoal">
-Objectif principal
-</label>
-
-<textarea
-id="profileGoal"
-placeholder="Exemple : améliorer ma technique, mon cardio..."></textarea>
-
-</div>
-
-
-<div class="profile-field">
-
-<label for="profileEmergencyName">
-Contact d’urgence
-</label>
-
-<input
-id="profileEmergencyName"
-type="text">
-
-</div>
-
-
-<div class="profile-field">
-
-<label for="profileEmergencyPhone">
-Téléphone urgence
-</label>
-
-<input
-id="profileEmergencyPhone"
-type="tel">
-
-</div>
-
-
-</div>
-
-
-<button
-class="btn primary profile-save"
-id="profileSaveButton"
-type="submit">
-
-💾 Enregistrer mes modifications
-
-</button>
-
-
-</form>
-
-
-<div class="profile-security">
-
-🔒 Ton adresse e-mail est liée à ton compte de connexion
-et ne peut pas être modifiée ici.
-Ton niveau est géré par le coach.
-
-</div>
-
-
+<div class="profile-fields"
+id="profileFields">
 </div>
 
 </div>
 
 </div>
 
+</div>
 </section>
 
 </main>
 
 
-<!-- =====================================================
-     INSCRIPTION
-===================================================== -->
+<!-- ========================= -->
+<!-- CREER UN COMPTE -->
+<!-- ========================= -->
 
-<div
-class="auth-modal"
+<div class="auth-modal"
 id="signupModal"
 aria-hidden="true">
 
 <div class="auth-card">
-
 
 <button
 class="auth-close"
@@ -1908,32 +1138,24 @@ data-close="signupModal">
 ×
 </button>
 
-
 <div class="eyebrow">
 — ESPACE BOXING COACH —
 </div>
 
-
-<h2>
-CRÉER UN COMPTE
-</h2>
-
+<h2>CRÉER UN COMPTE</h2>
 
 <p>
 Crée ton espace avec ton adresse e-mail.
-Tu n’as pas besoin d’avoir déjà un abonnement pour créer ton compte.
+Un e-mail de confirmation te sera envoyé.
 </p>
 
-
 <form id="signupForm">
-
 
 <input
 id="signupEmail"
 type="email"
 placeholder="Adresse e-mail"
 required>
-
 
 <input
 id="signupPassword"
@@ -1942,7 +1164,6 @@ minlength="6"
 placeholder="Mot de passe"
 required>
 
-
 <input
 id="signupPassword2"
 type="password"
@@ -1950,51 +1171,42 @@ minlength="6"
 placeholder="Confirmer le mot de passe"
 required>
 
-
 <button
 class="btn primary"
 type="submit">
 Créer mon compte
 </button>
 
-
 <div
 class="auth-status"
 id="signupStatus">
 </div>
 
-
 </form>
-
 
 <div class="auth-switch">
 
 Déjà un compte ?
 
-<button
-type="button"
-id="goLogin">
+<button type="button" id="goLogin">
 Se connecter
 </button>
 
 </div>
 
-
 </div>
 </div>
 
 
-<!-- =====================================================
-     CONNEXION
-===================================================== -->
+<!-- ========================= -->
+<!-- CONNEXION -->
+<!-- ========================= -->
 
-<div
-class="auth-modal"
+<div class="auth-modal"
 id="loginModal"
 aria-hidden="true">
 
 <div class="auth-card">
-
 
 <button
 class="auth-close"
@@ -2003,25 +1215,18 @@ data-close="loginModal">
 ×
 </button>
 
-
 <div class="eyebrow">
 — ESPACE BOXING COACH —
 </div>
 
-
-<h2>
-SE CONNECTER
-</h2>
-
+<h2>SE CONNECTER</h2>
 
 <p>
 Connecte-toi avec ton adresse e-mail
 et ton mot de passe.
 </p>
 
-
 <form id="loginForm">
-
 
 <input
 id="loginEmail"
@@ -2029,13 +1234,11 @@ type="email"
 placeholder="Adresse e-mail"
 required>
 
-
 <input
 id="loginPassword"
 type="password"
 placeholder="Mot de passe"
 required>
-
 
 <button
 class="btn primary"
@@ -2043,63 +1246,45 @@ type="submit">
 Se connecter
 </button>
 
-
 <div
 class="auth-status"
 id="loginStatus">
 </div>
 
-
 </form>
-
 
 <div class="auth-switch">
 
 Pas encore de compte ?
 
-<button
-type="button"
-id="goSignup">
+<button type="button" id="goSignup">
 Créer un compte
 </button>
 
 </div>
 
-
 </div>
 </div>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
-
 <div class="wrap">
 
 🥊
-
 <b style="color:white">
-
 BOXING
-
 <span style="color:var(--accent)">
 COACH
 </span>
-
 </b>
 
 — Discipline · Progression · Communauté
 
 </div>
-
 </footer>
 
 
-<!-- =====================================================
-     CONFIGURATION
-===================================================== -->
+<!-- IMPORTANT : ON GARDE TON CONFIG.JS -->
 
 <script src="config.js"></script>
 
@@ -2108,25 +1293,19 @@ COACH
 
 <script>
 
-/* =========================================================
-   BOXING COACH
-========================================================= */
-
 const $ = id =>
 document.getElementById(id);
 
 
-/* =========================================================
+/* =========================
    SUPABASE
-========================================================= */
+========================= */
 
 const SUPABASE_URL =
 window.BOXING_CONFIG.SUPABASE_URL;
 
-
 const SUPABASE_KEY =
 window.BOXING_CONFIG.SUPABASE_KEY;
-
 
 const supabaseClient =
 window.supabase.createClient(
@@ -2134,126 +1313,22 @@ window.supabase.createClient(
   SUPABASE_KEY
 );
 
-
-/* =========================================================
-   PROFIL / ABONNEMENT
-========================================================= */
-
-const PROFILE_BUCKET =
-'photos-profils';
+const PROFILE_BUCKET = 'photos-profils';
+const PROFILE_PHOTO_FILE = 'avatar';
+let cachedProfile = null;
+let cachedProfileUserId = null;
+let currentPhotoObjectUrl = null;
 
 
-const PROFILE_PHOTO_FILE =
-'avatar';
-
-
-let cachedProfile =
-null;
-
-
-let cachedProfileUserId =
-null;
-
-
-/*
-NOUVEAU :
-
-On mémorise maintenant aussi
-l'abonnement renvoyé par mon-profil.
-*/
-
-let cachedSubscription = {
-  actif:false,
-  type:null,
-  dateDebut:null,
-  dateFin:null
-};
-
-
-let currentPhotoObjectUrl =
-null;
-
-
-/* =========================================================
-   APPLIQUER LE STATUT D'ABONNEMENT
-========================================================= */
-
-function applySubscriptionState(
-  abonnement
-){
-
-  const actif =
-  abonnement?.actif === true;
-
-
-  cachedSubscription =
-  abonnement || {
-    actif:false
-  };
-
-
-  /*
-  Cette classe contrôle uniquement
-  l'affichage de l'interface.
-
-  Les données privées devront également
-  être protégées côté serveur.
-  */
-
-  document.body
-  .classList
-  .toggle(
-    'subscription-active',
-    actif
-  );
-
-
-  const subscriptionText =
-  $('subscriptionCardText');
-
-
-  if(subscriptionText){
-
-    if(actif){
-
-      const type =
-      abonnement?.type ||
-      'Abonnement actif';
-
-
-      subscriptionText.textContent =
-      `${type} — abonnement actif.`;
-
-    }
-
-    else{
-
-      subscriptionText.textContent =
-      'Aucun abonnement actif pour le moment.';
-
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   PAGES
-========================================================= */
+/* =========================
+   NAVIGATION
+========================= */
 
 function hidePages(){
 
-  $('publicPage').style.display =
-  'none';
-
-
-  $('memberArea').style.display =
-  'none';
-
-
-  $('profilePage').style.display =
-  'none';
+  $('publicPage').style.display='none';
+  $('memberArea').style.display='none';
+  $('profilePage').style.display='none';
 
 }
 
@@ -2262,41 +1337,7 @@ function showPublic(){
 
   hidePages();
 
-
-  /*
-  Un adhérent avec abonnement actif
-  ne revient plus sur la vitrine publique
-  depuis son interface membre.
-  */
-
-  if(
-    cachedSubscription?.actif === true
-  ){
-
-    const sessionEmail =
-    $('memberEmail').textContent || '';
-
-
-    $('memberArea').style.display =
-    'block';
-
-
-    if(sessionEmail){
-
-      $('memberEmail').textContent =
-      sessionEmail;
-
-    }
-
-  }
-
-  else{
-
-    $('publicPage').style.display =
-    'block';
-
-  }
-
+  $('publicPage').style.display='block';
 
   window.scrollTo({
     top:0,
@@ -2310,14 +1351,10 @@ function showMember(user){
 
   hidePages();
 
-
-  $('memberArea').style.display =
-  'block';
-
+  $('memberArea').style.display='block';
 
   $('memberEmail').textContent =
-  user?.email || '';
-
+    user?.email || '';
 
   window.scrollTo({
     top:0,
@@ -2327,294 +1364,194 @@ function showMember(user){
 }
 
 
-/* =========================================================
-   SESSION
-========================================================= */
+async function showProfile(){
 
-async function getCurrentSession(){
+  hidePages();
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-  .auth
-  .getSession();
+  $('profilePage').style.display='block';
 
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
 
-  if(error){
+  const {data} =
+  await supabaseClient.auth.getSession();
 
-    console.error(
-      'Erreur session :',
-      error
-    );
+  const session = data.session;
 
-
-    return null;
-
+  if(!session){
+    return;
   }
 
+  if(
+    cachedProfile &&
+    cachedProfileUserId === session.user.id
+  ){
+    renderProfile(
+      cachedProfile,
+      session.user
+    );
 
-  return data.session;
+    await Promise.all([
+      loadMyProfile({silent:true}),
+      loadProfilePhoto(session.user)
+    ]);
+
+    return;
+  }
+
+  await Promise.all([
+    loadMyProfile({silent:false}),
+    loadProfilePhoto(session.user)
+  ]);
 
 }
 
 
-/* =========================================================
-   DATE GRIST
-========================================================= */
+/* =========================
+   INTERFACE AUTH
+========================= */
 
-function gristDateToInput(value){
+function setAuthUI(session){
 
-  if(
-    value === null ||
-    value === undefined ||
-    value === ''
-  ){
+  const logged =
+  !!session?.user;
 
-    return '';
-
-  }
-
-
-  let date;
-
-
-  if(
-    typeof value === 'number'
-  ){
-
-    date =
-    new Date(
-      value * 1000
-    );
-
-  }
-
-  else{
-
-    date =
-    new Date(value);
-
-  }
-
-
-  if(
-    Number.isNaN(
-      date.getTime()
-    )
-  ){
-
-    return '';
-
-  }
-
-
-  const year =
-  date.getUTCFullYear();
-
-
-  const month =
-  String(
-    date.getUTCMonth() + 1
-  )
-  .padStart(2,'0');
-
-
-  const day =
-  String(
-    date.getUTCDate()
-  )
-  .padStart(2,'0');
-
-
-  return `${year}-${month}-${day}`;
-
-}
-
-
-/* =========================================================
-   AFFICHER LE PROFIL
-========================================================= */
-
-function renderProfile(
-  profile,
-  user
-){
-
-  /*
-  Un compte Supabase peut maintenant
-  exister sans fiche Adherents.
-
-  Dans ce cas on garde au minimum
-  l'adresse e-mail du compte.
-  */
-
-  const p =
-  profile || {};
-
-
-  const fullName =
-  `${p.prenom || ''} ${p.nom || ''}`
-  .trim();
-
-
-  $('profileFullName').textContent =
-  fullName ||
-  'Mon profil';
-
-
-  $('profileLevel').textContent =
-  p.niveau ||
-  'Niveau non renseigné';
-
-
-  $('profileLevelField').textContent =
-  p.niveau ||
-  'Non renseigné';
-
-
-  const email =
-  p.email ||
-  user?.email ||
-  '';
-
-
-  $('profileSideEmail').textContent =
-  email;
-
-
-  $('profileTopEmail').textContent =
-  email;
-
-
-  $('profileEmail').textContent =
-  email || '—';
-
-
-  $('profileFirstName').value =
-  p.prenom || '';
-
-
-  $('profileLastName').value =
-  p.nom || '';
-
-
-  $('profilePhone').value =
-  p.telephone || '';
-
-
-  $('profileBirthDate').value =
-  gristDateToInput(
-    p.dateNaissance
+  document.body.classList.toggle(
+    'logged-in',
+    logged
   );
 
+  if(logged){
 
-  $('profileGoal').value =
-  p.objectif || '';
+    $('memberEmail').textContent =
+    session.user.email || '';
 
+    $('profileTopEmail').textContent =
+    session.user.email || '';
 
-  $('profileEmergencyName').value =
-  p.contactUrgence || '';
-
-
-  $('profileEmergencyPhone').value =
-  p.telephoneUrgence || '';
+  }
 
 }
 
 
-/* =========================================================
-   CHARGER PROFIL + ABONNEMENT
-========================================================= */
+/* =========================
+   PROFIL
+========================= */
 
-async function loadMyProfile(
-  {
-    silent=false
-  }={}
-){
+function renderProfile(p,user){
+
+  const fields =
+  $('profileFields');
+
+  const fullName =
+  `${p.prenom || ''} ${p.nom || ''}`.trim();
+
+  $('profileFullName').textContent =
+  fullName || 'Mon profil';
+
+  $('profileLevel').textContent =
+  p.niveau || 'Niveau non renseigné';
+
+  $('profileSideEmail').textContent =
+  p.email || user?.email || '';
+
+  $('profileTopEmail').textContent =
+  p.email || user?.email || '';
+
+  const items = [
+
+    ['Prénom',p.prenom],
+    ['Nom',p.nom],
+    ['E-mail',p.email],
+    ['Téléphone',p.telephone],
+    ['Date de naissance',p.dateNaissance],
+    ['Niveau',p.niveau],
+    ['Objectif principal',p.objectif],
+    ['Contact d’urgence',p.contactUrgence],
+    ['Téléphone urgence',p.telephoneUrgence]
+
+  ];
+
+  fields.innerHTML =
+  items.map(
+    ([label,value]) => `
+
+    <div class="profile-field">
+
+      <small>
+      ${escapeHtml(label)}
+      </small>
+
+      <strong>
+      ${escapeHtml(
+        formatProfileValue(value)
+      )}
+      </strong>
+
+    </div>
+
+    `
+  ).join('');
+
+}
+
+
+async function loadMyProfile({silent=false}={}){
 
   const status =
   $('profileStatus');
 
+  status.className =
+  'profile-status';
 
-  const session =
-  await getCurrentSession();
+  const {
+    data:{session},
+    error:sessionError
+  } =
+  await supabaseClient.auth.getSession();
 
+  if(sessionError || !session){
 
-  if(!session){
+    status.className =
+    'profile-status error';
 
-    applySubscriptionState({
-      actif:false
-    });
-
-
-    if(!silent){
-
-      status.className =
-      'profile-status error';
-
-
-      status.textContent =
-      'Tu dois être connecté pour consulter ton profil.';
-
-    }
-
+    status.textContent =
+    'Tu dois être connecté pour consulter ton profil.';
 
     return null;
 
   }
 
-
-  if(
-    !silent &&
-    !cachedProfile
-  ){
-
-    status.className =
-    'profile-status';
-
+  if(!silent && !cachedProfile){
 
     status.textContent =
     'Chargement du profil…';
 
   }
 
-
   try{
-
 
     const response =
     await fetch(
-
       `${SUPABASE_URL}/functions/v1/mon-profil`,
-
       {
-
         method:'GET',
 
         headers:{
-
           'Authorization':
           `Bearer ${session.access_token}`,
 
           'apikey':
           SUPABASE_KEY
-
         }
-
       }
-
     );
-
 
     const result =
-    await response
-    .json()
-    .catch(
-      ()=>({})
-    );
-
+    await response.json()
+    .catch(()=>({}));
 
     if(!response.ok){
 
@@ -2625,89 +1562,40 @@ async function loadMyProfile(
 
     }
 
+    const p =
+    result.profil || {};
 
-    /*
-    NOUVEAU :
-    on applique immédiatement le statut
-    de l'abonnement.
-    */
-
-    applySubscriptionState(
-      result.abonnement
-    );
-
-
-    const profile =
-    result.profil;
-
-
-    cachedProfile =
-    profile;
-
-
-    cachedProfileUserId =
-    session.user.id;
-
+    cachedProfile = p;
+    cachedProfileUserId = session.user.id;
 
     renderProfile(
-      profile,
+      p,
       session.user
     );
 
+    status.textContent = '';
 
-    if(!silent){
-
-      status.className =
-      'profile-status';
-
-
-      status.textContent =
-      '';
-
-    }
-
-
-    return profile;
+    return p;
 
   }
 
   catch(error){
 
-
     console.error(
-      'Erreur chargement profil :',
+      'mon-profil',
       error
     );
 
-
-    /*
-    En cas d'erreur serveur, on ne donne
-    jamais l'accès membre par défaut.
-    */
-
-    applySubscriptionState({
-      actif:false
-    });
-
-
-    if(
-      !silent ||
-      !cachedProfile
-    ){
+    if(!cachedProfile){
 
       status.className =
       'profile-status error';
 
-
       status.textContent =
-      'Impossible de charger ton profil : ' +
-      (
-        error?.message ||
-        'erreur inconnue'
-      );
+      'Impossible de charger ton profil : '
+      + error.message;
 
     }
-
 
     return null;
 
@@ -2715,134 +1603,154 @@ async function loadMyProfile(
 
 }
 
+function formatProfileValue(value){
 
-/* =========================================================
-   OUVRIR MON PROFIL
-========================================================= */
+  if(
+    value === null ||
+    value === undefined ||
+    value === ''
+  ){
 
-async function showProfile(){
-
-  hidePages();
-
-
-  $('profilePage').style.display =
-  'block';
-
-
-  window.scrollTo({
-    top:0,
-    behavior:'smooth'
-  });
-
-
-  const session =
-  await getCurrentSession();
-
-
-  if(!session){
-
-    showPublic();
-
-
-    openModal(
-      'loginModal'
-    );
-
-
-    return;
+    return 'Non renseigné';
 
   }
 
 
   if(
-    cachedProfileUserId ===
-    session.user.id
+    typeof value === 'number' &&
+    value > 100000000
   ){
 
-    renderProfile(
-      cachedProfile,
-      session.user
+    const date =
+    new Date(
+      value * 1000
     );
 
 
-    loadMyProfile({
-      silent:true
-    });
+    if(
+      !Number.isNaN(
+        date.getTime()
+      )
+    ){
 
+      return date.toLocaleDateString(
+        'fr-FR'
+      );
 
-    loadProfilePhoto(
-      session.user
-    );
-
-
-    return;
+    }
 
   }
 
 
-  await Promise.all([
-
-    loadMyProfile({
-      silent:false
-    }),
-
-    loadProfilePhoto(
-      session.user
-    )
-
-  ]);
+  return String(value);
 
 }
 
 
-/* =========================================================
-   AUTH UI
-========================================================= */
+function escapeHtml(value){
 
-function setAuthUI(session){
+  return String(value)
 
-  const logged =
-  !!session?.user;
+  .replaceAll('&','&amp;')
+  .replaceAll('<','&lt;')
+  .replaceAll('>','&gt;')
+  .replaceAll('"','&quot;')
+  .replaceAll("'","&#039;");
+
+}
 
 
-  document.body
-  .classList
-  .toggle(
-    'logged-in',
-    logged
+/* =========================
+   BOUTONS NAVIGATION
+========================= */
+
+$('navMember')
+.addEventListener(
+  'click',
+  async ()=>{
+
+    const {data} =
+    await supabaseClient.auth.getSession();
+
+    if(data.session){
+
+      showMember(
+        data.session.user
+      );
+
+    }
+
+  }
+);
+
+
+$('navProfile')
+.addEventListener(
+  'click',
+  showProfile
+);
+
+
+$('memberProfileButton')
+.addEventListener(
+  'click',
+  showProfile
+);
+
+
+$('profileBack')
+.addEventListener(
+  'click',
+  async ()=>{
+
+    const {data} =
+    await supabaseClient.auth.getSession();
+
+    if(data.session){
+
+      showMember(
+        data.session.user
+      );
+
+    }
+
+  }
+);
+
+
+document
+.querySelectorAll('.memberHome')
+.forEach(button=>{
+
+  button.addEventListener(
+    'click',
+    showPublic
   );
 
-
-  if(logged){
-
-    $('memberEmail').textContent =
-    session.user.email || '';
+});
 
 
-    $('profileTopEmail').textContent =
-    session.user.email || '';
+document
+.querySelectorAll('.public-link')
+.forEach(link=>{
 
-  }
+  link.addEventListener(
+    'click',
+    ()=>{
 
-  else{
+      $('memberArea').style.display='none';
+      $('profilePage').style.display='none';
+      $('publicPage').style.display='block';
 
-    /*
-    Déconnecté =
-    aucun droit abonnement.
-    */
+    }
+  );
 
-    applySubscriptionState({
-      actif:false
-    });
-
-  }
-
-}
+});
 
 
-/* =========================================================
+/* =========================
    PHOTO
-========================================================= */
+========================= */
 
 function profilePhotoPath(user){
 
@@ -2851,47 +1759,14 @@ function profilePhotoPath(user){
 }
 
 
-function clearProfilePhoto(){
-
-  if(currentPhotoObjectUrl){
-
-    URL.revokeObjectURL(
-      currentPhotoObjectUrl
-    );
-
-
-    currentPhotoObjectUrl =
-    null;
-
-  }
-
-
-  const image =
-  $('profilePhotoImage');
-
-
-  image.removeAttribute(
-    'src'
-  );
-
-
-  image.style.display =
-  'none';
-
-
-  $('profilePhotoPlaceholder')
-  .style.display =
-  '';
-
-
-  $('photoButton').textContent =
-  '📷 Ajouter une photo';
-
-}
-
-
 function showProfilePhoto(url){
 
+  const image =
+  $('profilePhotoImage');
+
+  const placeholder =
+  $('profilePhotoPlaceholder');
+
   if(currentPhotoObjectUrl){
 
     URL.revokeObjectURL(
@@ -2900,31 +1775,11 @@ function showProfilePhoto(url){
 
   }
 
+  currentPhotoObjectUrl = url;
 
-  currentPhotoObjectUrl =
-  url;
-
-
-  const image =
-  $('profilePhotoImage');
-
-
-  image.onload = ()=>{
-
-    image.style.display =
-    'block';
-
-
-    $('profilePhotoPlaceholder')
-    .style.display =
-    'none';
-
-  };
-
-
-  image.src =
-  url;
-
+  image.src = url;
+  image.style.display = 'block';
+  placeholder.style.display = 'none';
 
   $('photoButton').textContent =
   '📷 Changer la photo';
@@ -2932,138 +1787,89 @@ function showProfilePhoto(url){
 }
 
 
-async function loadProfilePhoto(user){
+function clearProfilePhoto(){
 
-  if(!user){
+  const image =
+  $('profilePhotoImage');
 
-    clearProfilePhoto();
+  image.removeAttribute('src');
+  image.style.display = 'none';
 
-    return false;
+  $('profilePhotoPlaceholder')
+  .style.display = '';
 
-  }
-
-
-  const path =
-  profilePhotoPath(user);
-
-
-  try{
-
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-    .storage
-    .from(PROFILE_BUCKET)
-    .download(path);
-
-
-    if(error){
-
-      clearProfilePhoto();
-
-      return false;
-
-    }
-
-
-    const objectUrl =
-    URL.createObjectURL(
-      data
-    );
-
-
-    showProfilePhoto(
-      objectUrl
-    );
-
-
-    return true;
-
-  }
-
-  catch(error){
-
-
-    console.error(
-      'Erreur chargement photo :',
-      error
-    );
-
-
-    clearProfilePhoto();
-
-
-    return false;
-
-  }
+  $('photoButton').textContent =
+  '📷 Ajouter une photo';
 
 }
 
 
-/* =========================================================
-   CHOISIR UNE PHOTO
-========================================================= */
+async function loadProfilePhoto(user){
+
+  if(!user){
+    return;
+  }
+
+  const path =
+  profilePhotoPath(user);
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+  .storage
+  .from(PROFILE_BUCKET)
+  .download(path);
+
+  if(error){
+
+    clearProfilePhoto();
+
+    return;
+
+  }
+
+  const objectUrl =
+  URL.createObjectURL(data);
+
+  showProfilePhoto(
+    objectUrl
+  );
+
+}
+
 
 $('photoButton')
 .addEventListener(
   'click',
   ()=>{
 
-    $('profilePhotoInput')
-    .click();
+    $('profilePhotoInput').click();
 
   }
 );
 
-
-/* =========================================================
-   AJOUTER / CHANGER PHOTO
-========================================================= */
 
 $('profilePhotoInput')
 .addEventListener(
   'change',
   async event=>{
 
-
-    const input =
-    event.target;
-
-
     const file =
-    input.files?.[0];
+    event.target.files?.[0];
 
-
-    input.value =
-    '';
-
+    event.target.value = '';
 
     if(!file){
-
       return;
-
     }
 
-
-    const status =
-    $('profileStatus');
-
-
-    const button =
-    $('photoButton');
-
-
     const allowedTypes = [
-
       'image/jpeg',
       'image/png',
       'image/webp'
-
     ];
-
 
     if(
       !allowedTypes.includes(
@@ -3071,576 +1877,176 @@ $('profilePhotoInput')
       )
     ){
 
-      status.className =
+      $('profileStatus').className =
       'profile-status error';
 
-
-      status.textContent =
-      'Choisis une photo JPEG, PNG ou WEBP.';
-
+      $('profileStatus').textContent =
+      'Choisis une image JPEG, PNG ou WEBP.';
 
       return;
 
     }
-
 
     if(
       file.size >
       5 * 1024 * 1024
     ){
 
-      status.className =
+      $('profileStatus').className =
       'profile-status error';
 
-
-      status.textContent =
+      $('profileStatus').textContent =
       'La photo ne doit pas dépasser 5 Mo.';
-
 
       return;
 
     }
 
-
-    const session =
-    await getCurrentSession();
-
+    const {
+      data:{session}
+    } =
+    await supabaseClient.auth.getSession();
 
     if(!session){
 
-      status.className =
+      $('profileStatus').className =
       'profile-status error';
 
-
-      status.textContent =
+      $('profileStatus').textContent =
       'Tu dois être connecté pour ajouter une photo.';
-
 
       return;
 
     }
 
+    const status =
+    $('profileStatus');
 
-    button.disabled =
-    true;
+    const button =
+    $('photoButton');
 
+    const oldButtonText =
+    button.textContent;
 
     status.className =
     'profile-status';
 
-
     status.textContent =
-    'Enregistrement de la photo…';
+    'Envoi de la photo…';
 
+    button.disabled = true;
 
     try{
-
 
       const path =
       profilePhotoPath(
         session.user
       );
 
-
-      /*
-      Vérification de l'existence
-      de l'avatar actuel.
-      */
-
       const {
-        data:existingPhoto,
-        error:existingError
+        error
       } =
       await supabaseClient
       .storage
       .from(PROFILE_BUCKET)
-      .download(path);
-
-
-      if(
-        !existingError &&
-        existingPhoto
-      ){
-
-        /*
-        PHOTO EXISTANTE :
-        UPDATE.
-        */
-
-        const {
-          error:updateError
-        } =
-        await supabaseClient
-        .storage
-        .from(PROFILE_BUCKET)
-        .update(
-          path,
-          file,
-          {
-
-            cacheControl:'0',
-
-            contentType:
-            file.type,
-
-            upsert:true
-
-          }
-        );
-
-
-        if(updateError){
-
-          throw updateError;
-
+      .upload(
+        path,
+        file,
+        {
+          cacheControl:'3600',
+          contentType:file.type,
+          upsert:true
         }
-
-      }
-
-      else{
-
-        /*
-        PREMIERE PHOTO :
-        UPLOAD.
-        */
-
-        const {
-          error:uploadError
-        } =
-        await supabaseClient
-        .storage
-        .from(PROFILE_BUCKET)
-        .upload(
-          path,
-          file,
-          {
-
-            cacheControl:'0',
-
-            contentType:
-            file.type,
-
-            upsert:false
-
-          }
-        );
-
-
-        if(uploadError){
-
-          throw uploadError;
-
-        }
-
-      }
-
-
-      /*
-      Affichage immédiat du nouveau fichier.
-      */
-
-      const previewUrl =
-      URL.createObjectURL(
-        file
       );
 
+      if(error){
+        throw error;
+      }
 
-      showProfilePhoto(
-        previewUrl
+      await loadProfilePhoto(
+        session.user
       );
-
-
-      status.className =
-      'profile-status';
-
 
       status.textContent =
       '✓ Photo enregistrée.';
 
-
-      /*
-      Puis relecture depuis le bucket privé.
-      */
-
-      setTimeout(
-        ()=>{
-
-          loadProfilePhoto(
-            session.user
-          );
-
-        },
-        700
-      );
-
-
-      setTimeout(
-        ()=>{
-
-          if(
-            status.textContent ===
-            '✓ Photo enregistrée.'
-          ){
-
-            status.textContent =
-            '';
-
-          }
-
-        },
-        3000
-      );
-
-
     }
 
     catch(error){
 
-
       console.error(
-        'Erreur photo profil :',
+        'photo-profil',
         error
       );
-
 
       status.className =
       'profile-status error';
 
-
       status.textContent =
-      'Impossible d’enregistrer la photo : ' +
-      (
-        error?.message ||
-        'erreur inconnue'
-      );
+      'Impossible d’enregistrer la photo : '
+      + error.message;
+
+      button.textContent =
+      oldButtonText;
 
     }
 
     finally{
 
-      button.disabled =
-      false;
+      button.disabled = false;
 
     }
 
   }
 );
 
+/* =========================
+   DECONNEXION
+========================= */
 
-/*
-=========================================================
-FIN PARTIE 1/2
-
-NE METS PAS :
-</script>
-</body>
-</html>
-
-/* =========================================================
-   ENREGISTRER LES MODIFICATIONS DU PROFIL
-========================================================= */
-
-$('profileForm')
+$('navLogout')
 .addEventListener(
-  'submit',
-  async event=>{
+  'click',
+  async ()=>{
 
+    await supabaseClient.auth.signOut();
 
-    event.preventDefault();
+    cachedProfile = null;
+    cachedProfileUserId = null;
+    clearProfilePhoto();
 
+    setAuthUI(null);
 
-    const status =
-    $('profileStatus');
-
-
-    const saveButton =
-    $('profileSaveButton');
-
-
-    status.className =
-    'profile-status';
-
-
-    status.textContent =
-    'Enregistrement…';
-
-
-    saveButton.disabled =
-    true;
-
-
-    try{
-
-
-      /* ===================================================
-         VERIFIER LA SESSION
-      =================================================== */
-
-      const session =
-      await getCurrentSession();
-
-
-      if(!session){
-
-        throw new Error(
-          'Ta session a expiré. Reconnecte-toi.'
-        );
-
-      }
-
-
-      /* ===================================================
-         INFORMATIONS DU FORMULAIRE
-      =================================================== */
-
-      const payload = {
-
-
-        prenom:
-        $('profileFirstName')
-        .value
-        .trim(),
-
-
-        nom:
-        $('profileLastName')
-        .value
-        .trim(),
-
-
-        telephone:
-        $('profilePhone')
-        .value
-        .trim(),
-
-
-        dateNaissance:
-        $('profileBirthDate')
-        .value || null,
-
-
-        objectif:
-        $('profileGoal')
-        .value
-        .trim(),
-
-
-        contactUrgence:
-        $('profileEmergencyName')
-        .value
-        .trim(),
-
-
-        telephoneUrgence:
-        $('profileEmergencyPhone')
-        .value
-        .trim()
-
-      };
-
-
-      /* ===================================================
-         VERIFICATION
-      =================================================== */
-
-      if(
-        !payload.prenom ||
-        !payload.nom
-      ){
-
-        throw new Error(
-          'Le prénom et le nom sont obligatoires.'
-        );
-
-      }
-
-
-      /* ===================================================
-         ENVOI VERS MON-PROFIL
-      =================================================== */
-
-      const response =
-      await fetch(
-
-        `${SUPABASE_URL}/functions/v1/mon-profil`,
-
-        {
-
-          method:
-          'PATCH',
-
-
-          headers:{
-
-            'Authorization':
-            `Bearer ${session.access_token}`,
-
-            'apikey':
-            SUPABASE_KEY,
-
-            'Content-Type':
-            'application/json'
-
-          },
-
-
-          body:
-          JSON.stringify(
-            payload
-          )
-
-        }
-
-      );
-
-
-      const result =
-      await response
-      .json()
-      .catch(
-        ()=>({})
-      );
-
-
-      if(!response.ok){
-
-        throw new Error(
-          result.error ||
-          `Erreur ${response.status}`
-        );
-
-      }
-
-
-      /* ===================================================
-         METTRE A JOUR L'ABONNEMENT
-      =================================================== */
-
-      applySubscriptionState(
-        result.abonnement
-      );
-
-
-      /* ===================================================
-         METTRE A JOUR LE PROFIL
-      =================================================== */
-
-      if(result.profil){
-
-
-        cachedProfile =
-        result.profil;
-
-
-        cachedProfileUserId =
-        session.user.id;
-
-
-        renderProfile(
-          result.profil,
-          session.user
-        );
-
-      }
-
-      else{
-
-
-        await loadMyProfile({
-          silent:true
-        });
-
-      }
-
-
-      /* ===================================================
-         CONFIRMATION
-      =================================================== */
-
-      status.className =
-      'profile-status';
-
-
-      status.textContent =
-      '✓ Tes informations ont été enregistrées.';
-
-
-      setTimeout(
-        ()=>{
-
-          if(
-            status.textContent ===
-            '✓ Tes informations ont été enregistrées.'
-          ){
-
-            status.textContent =
-            '';
-
-          }
-
-        },
-        3500
-      );
-
-
-    }
-
-    catch(error){
-
-
-      console.error(
-        'Erreur enregistrement profil :',
-        error
-      );
-
-
-      status.className =
-      'profile-status error';
-
-
-      status.textContent =
-      'Impossible d’enregistrer : ' +
-      (
-        error?.message ||
-        'erreur inconnue'
-      );
-
-    }
-
-    finally{
-
-
-      saveButton.disabled =
-      false;
-
-    }
+    showPublic();
 
   }
 );
 
 
-/* =========================================================
+/* =========================
    MODALES
-========================================================= */
+========================= */
 
-function openModal(id){
+function openAuth(id){
+
+  document
+  .querySelectorAll('.auth-modal')
+  .forEach(modal=>{
+
+    modal.classList.remove('open');
+
+    modal.setAttribute(
+      'aria-hidden',
+      'true'
+    );
+
+  });
 
 
   const modal =
   $(id);
 
-
-  if(!modal){
-
-    return;
-
-  }
-
-
-  modal.classList.add(
-    'open'
-  );
-
+  modal.classList.add('open');
 
   modal.setAttribute(
     'aria-hidden',
@@ -3650,24 +2056,12 @@ function openModal(id){
 }
 
 
-function closeModal(id){
-
+function closeAuth(id){
 
   const modal =
   $(id);
 
-
-  if(!modal){
-
-    return;
-
-  }
-
-
-  modal.classList.remove(
-    'open'
-  );
-
+  modal.classList.remove('open');
 
   modal.setAttribute(
     'aria-hidden',
@@ -3677,214 +2071,74 @@ function closeModal(id){
 }
 
 
-/* =========================================================
-   BOUTONS CONNEXION
-========================================================= */
+document
+.querySelectorAll('.js-signup')
+.forEach(button=>{
+
+  button.addEventListener(
+    'click',
+    ()=>openAuth('signupModal')
+  );
+
+});
+
 
 document
-.querySelectorAll(
-  '.js-login'
-)
-.forEach(
-  button=>{
+.querySelectorAll('.js-login')
+.forEach(button=>{
 
+  button.addEventListener(
+    'click',
+    ()=>openAuth('loginModal')
+  );
 
-    button.addEventListener(
-      'click',
-      ()=>{
+});
 
-
-        $('loginStatus').textContent =
-        '';
-
-
-        openModal(
-          'loginModal'
-        );
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================================================
-   BOUTONS CREATION DE COMPTE
-========================================================= */
 
 document
-.querySelectorAll(
-  '.js-signup'
-)
-.forEach(
-  button=>{
+.querySelectorAll('[data-close]')
+.forEach(button=>{
 
+  button.addEventListener(
+    'click',
+    ()=>closeAuth(
+      button.dataset.close
+    )
+  );
 
-    button.addEventListener(
-      'click',
-      ()=>{
+});
 
-
-        $('signupStatus').textContent =
-        '';
-
-
-        openModal(
-          'signupModal'
-        );
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================================================
-   FERMETURE DES MODALES
-========================================================= */
-
-document
-.querySelectorAll(
-  '[data-close]'
-)
-.forEach(
-  button=>{
-
-
-    button.addEventListener(
-      'click',
-      ()=>{
-
-
-        closeModal(
-          button.dataset.close
-        );
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================================================
-   CLIC HORS MODALE INSCRIPTION
-========================================================= */
-
-$('signupModal')
-.addEventListener(
-  'click',
-  event=>{
-
-
-    if(
-      event.target ===
-      $('signupModal')
-    ){
-
-      closeModal(
-        'signupModal'
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CLIC HORS MODALE CONNEXION
-========================================================= */
-
-$('loginModal')
-.addEventListener(
-  'click',
-  event=>{
-
-
-    if(
-      event.target ===
-      $('loginModal')
-    ){
-
-      closeModal(
-        'loginModal'
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   INSCRIPTION -> CONNEXION
-========================================================= */
 
 $('goLogin')
 .addEventListener(
   'click',
-  ()=>{
-
-
-    closeModal(
-      'signupModal'
-    );
-
-
-    openModal(
-      'loginModal'
-    );
-
-  }
+  ()=>openAuth('loginModal')
 );
 
-
-/* =========================================================
-   CONNEXION -> INSCRIPTION
-========================================================= */
 
 $('goSignup')
 .addEventListener(
   'click',
-  ()=>{
-
-
-    closeModal(
-      'loginModal'
-    );
-
-
-    openModal(
-      'signupModal'
-    );
-
-  }
+  ()=>openAuth('signupModal')
 );
 
 
-/* =========================================================
-   CREER UN COMPTE
-========================================================= */
+/* =========================
+   CREATION COMPTE
+========================= */
 
 $('signupForm')
 .addEventListener(
   'submit',
   async event=>{
 
-
     event.preventDefault();
-
 
     const status =
     $('signupStatus');
 
-
     status.className =
     'auth-status';
-
 
     status.textContent =
     'Création du compte…';
@@ -3906,820 +2160,189 @@ $('signupForm')
     .value;
 
 
-    /* =====================================================
-       VERIFIER MOT DE PASSE
-    ===================================================== */
-
-    if(
-      password !==
-      password2
-    ){
+    if(password !== password2){
 
       status.className =
       'auth-status error';
 
-
       status.textContent =
-      'Les deux mots de passe sont différents.';
-
+      'Les deux mots de passe ne correspondent pas.';
 
       return;
 
     }
 
 
-    if(
-      password.length < 6
-    ){
+    const {error} =
+    await supabaseClient.auth.signUp({
+
+      email,
+
+      password,
+
+      options:{
+
+        emailRedirectTo:
+        'https://jeanlouisaucarre.github.io/boxing-coach-widget/'
+
+      }
+
+    });
+
+
+    if(error){
 
       status.className =
       'auth-status error';
 
-
       status.textContent =
-      'Le mot de passe doit contenir au moins 6 caractères.';
-
+      error.message;
 
       return;
 
     }
 
 
-    try{
+    status.textContent =
+    '✓ Compte créé. Vérifie ton e-mail pour confirmer ton inscription.';
 
-
-      /* ===================================================
-         CREATION SUPABASE
-      =================================================== */
-
-      const {
-        data,
-        error
-      } =
-      await supabaseClient
-      .auth
-      .signUp({
-
-        email,
-
-        password,
-
-        options:{
-
-          emailRedirectTo:
-          window.location.origin +
-          window.location.pathname
-
-        }
-
-      });
-
-
-      if(error){
-
-        throw error;
-
-      }
-
-
-      /* ===================================================
-         SESSION IMMEDIATE
-      =================================================== */
-
-      if(data.session){
-
-
-        status.className =
-        'auth-status';
-
-
-        status.textContent =
-        '✓ Compte créé. Tu es connecté.';
-
-
-        setAuthUI(
-          data.session
-        );
-
-
-        cachedProfile =
-        null;
-
-
-        cachedProfileUserId =
-        null;
-
-
-        applySubscriptionState({
-          actif:false
-        });
-
-
-        /*
-        Vérification immédiate du profil
-        et de l'abonnement.
-
-        Un nouveau compte sans abonnement
-        restera donc en mode public + compte.
-        */
-
-        await loadMyProfile({
-          silent:true
-        });
-
-
-        loadProfilePhoto(
-          data.session.user
-        );
-
-
-        setTimeout(
-          ()=>{
-
-
-            closeModal(
-              'signupModal'
-            );
-
-
-            showMember(
-              data.session.user
-            );
-
-
-          },
-          500
-        );
-
-      }
-
-      else{
-
-
-        /*
-        Confirmation e-mail activée.
-        */
-
-        status.className =
-        'auth-status';
-
-
-        status.textContent =
-        '✓ Compte créé. Vérifie maintenant ton e-mail pour confirmer ton compte.';
-
-      }
-
-
-    }
-
-    catch(error){
-
-
-      console.error(
-        'Erreur inscription :',
-        error
-      );
-
-
-      status.className =
-      'auth-status error';
-
-
-      status.textContent =
-      error?.message ||
-      'Impossible de créer le compte.';
-
-    }
+    event.target.reset();
 
   }
 );
 
 
-/* =========================================================
+/* =========================
    CONNEXION
-========================================================= */
+========================= */
 
 $('loginForm')
 .addEventListener(
   'submit',
   async event=>{
 
-
     event.preventDefault();
-
 
     const status =
     $('loginStatus');
 
-
     status.className =
     'auth-status';
-
 
     status.textContent =
     'Connexion…';
 
 
-    const email =
-    $('loginEmail')
-    .value
-    .trim();
+    const {data,error} =
+    await supabaseClient.auth.signInWithPassword({
+
+      email:
+      $('loginEmail')
+      .value
+      .trim(),
+
+      password:
+      $('loginPassword')
+      .value
+
+    });
 
 
-    const password =
-    $('loginPassword')
-    .value;
-
-
-    try{
-
-
-      /* ===================================================
-         CONNEXION SUPABASE
-      =================================================== */
-
-      const {
-        data,
-        error
-      } =
-      await supabaseClient
-      .auth
-      .signInWithPassword({
-
-        email,
-        password
-
-      });
-
-
-      if(error){
-
-        throw error;
-
-      }
-
-
-      if(!data.session){
-
-        throw new Error(
-          'Session non créée.'
-        );
-
-      }
-
-
-      setAuthUI(
-        data.session
-      );
-
-
-      status.className =
-      'auth-status';
-
-
-      status.textContent =
-      '✓ Connecté';
-
-
-      /* ===================================================
-         RESET CACHE
-      =================================================== */
-
-      cachedProfile =
-      null;
-
-
-      cachedProfileUserId =
-      null;
-
-
-      applySubscriptionState({
-        actif:false
-      });
-
-
-      /* ===================================================
-         IMPORTANT
-
-         On ATTEND maintenant mon-profil.
-
-         Comme ça, avant d'afficher l'espace,
-         le site sait déjà si l'utilisateur
-         possède un abonnement actif.
-      =================================================== */
-
-      await loadMyProfile({
-        silent:true
-      });
-
-
-      await loadProfilePhoto(
-        data.session.user
-      );
-
-
-      closeModal(
-        'loginModal'
-      );
-
-
-      showMember(
-        data.session.user
-      );
-
-
-      status.textContent =
-      '';
-
-
-    }
-
-    catch(error){
-
-
-      console.error(
-        'Erreur connexion :',
-        error
-      );
-
+    if(error){
 
       status.className =
       'auth-status error';
 
-
       status.textContent =
-      error?.message ||
-      'Connexion impossible.';
+      'Connexion impossible : '
+      + error.message;
 
-    }
-
-  }
-);
-
-
-/* =========================================================
-   DECONNEXION
-========================================================= */
-
-$('navLogout')
-.addEventListener(
-  'click',
-  async ()=>{
-
-
-    try{
-
-
-      await supabaseClient
-      .auth
-      .signOut();
-
-
-    }
-
-    catch(error){
-
-
-      console.error(
-        'Erreur déconnexion :',
-        error
-      );
+      return;
 
     }
 
 
-    /* =====================================================
-       VIDER PROFIL
-    ===================================================== */
+    status.textContent =
+    '✓ Connecté.';
 
-    cachedProfile =
-    null;
-
-
-    cachedProfileUserId =
-    null;
-
-
-    /* =====================================================
-       VIDER ABONNEMENT
-    ===================================================== */
-
-    applySubscriptionState({
-      actif:false
-    });
-
-
-    /* =====================================================
-       VIDER PHOTO
-    ===================================================== */
-
-    clearProfilePhoto();
-
-
-    /* =====================================================
-       INTERFACE DECONNECTEE
-    ===================================================== */
 
     setAuthUI(
-      null
+      data.session
     );
 
-
-    showPublic();
-
-  }
-);
+    loadMyProfile({silent:true});
+    loadProfilePhoto(data.user);
 
 
-/* =========================================================
-   MON ESPACE
-========================================================= */
-
-$('navMember')
-.addEventListener(
-  'click',
-  async ()=>{
-
-
-    const session =
-    await getCurrentSession();
-
-
-    if(session){
-
-
-      /*
-      On revérifie le statut avant
-      d'afficher l'espace membre.
-
-      Si le coach vient d'activer
-      l'abonnement dans Grist,
-      le changement pourra donc
-      être récupéré.
-      */
-
-      await loadMyProfile({
-        silent:true
-      });
-
-
-      showMember(
-        session.user
-      );
-
-
-    }
-
-    else{
-
-
-      openModal(
-        'loginModal'
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   MON PROFIL
-========================================================= */
-
-$('navProfile')
-.addEventListener(
-  'click',
-  ()=>{
-
-
-    showProfile();
-
-  }
-);
-
-
-/* =========================================================
-   CARTE MON PROFIL
-========================================================= */
-
-$('memberProfileButton')
-.addEventListener(
-  'click',
-  ()=>{
-
-
-    showProfile();
-
-  }
-);
-
-
-/* =========================================================
-   PROFIL -> MON ESPACE
-========================================================= */
-
-$('profileBack')
-.addEventListener(
-  'click',
-  async ()=>{
-
-
-    const session =
-    await getCurrentSession();
-
-
-    if(session){
-
-
-      /*
-      Revérifier également l'abonnement
-      au retour du profil.
-      */
-
-      await loadMyProfile({
-        silent:true
-      });
-
-
-      showMember(
-        session.user
-      );
-
-
-    }
-
-    else{
-
-
-      showPublic();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   ESPACE MEMBRE -> ACCUEIL
-
-   Ce bouton n'est affiché que pour
-   les comptes sans abonnement actif.
-========================================================= */
-
-document
-.querySelectorAll(
-  '.memberHome'
-)
-.forEach(
-  button=>{
-
-
-    button.addEventListener(
-      'click',
+    setTimeout(
       ()=>{
 
+        closeAuth(
+          'loginModal'
+        );
 
-        showPublic();
+        showMember(
+          data.user
+        );
 
-      }
+      },
+      500
     );
 
   }
 );
 
 
-/* =========================================================
-   LIENS DU MENU PUBLIC
+/* =========================
+   SESSION
+========================= */
 
-   Ils restent accessibles aux comptes
-   sans abonnement.
+supabaseClient.auth
+.getSession()
+.then(({data})=>{
 
-   Avec abonnement actif, ces liens
-   sont cachés par le CSS.
-========================================================= */
+  setAuthUI(
+    data.session
+  );
 
-document
-.querySelectorAll(
-  '.public-link'
-)
-.forEach(
-  link=>{
+  if(data.session){
 
+    loadMyProfile({silent:true});
+    loadProfilePhoto(data.session.user);
 
-    link.addEventListener(
-      'click',
-      ()=>{
+  }
 
-
-        /*
-        Sécurité supplémentaire :
-        si abonnement actif, on ne
-        bascule pas vers la vitrine.
-        */
-
-        if(
-          cachedSubscription?.actif === true
-        ){
-
-          return;
-
-        }
+});
 
 
-        $('memberArea')
-        .style.display =
-        'none';
+supabaseClient.auth
+.onAuthStateChange(
+  (_event,session)=>{
 
-
-        $('profilePage')
-        .style.display =
-        'none';
-
-
-        $('publicPage')
-        .style.display =
-        'block';
-
-      }
+    setAuthUI(
+      session
     );
 
   }
 );
 
 
-/* =========================================================
-   FORMULAIRE CONTACT
-========================================================= */
+/* =========================
+   CONTACT
+========================= */
 
 $('contactForm')
 .addEventListener(
   'submit',
   event=>{
 
-
     event.preventDefault();
 
-
     $('status').textContent =
-    '✓ Formulaire prêt. La connexion sécurisée au coach sera ajoutée ensuite.';
+    'Le formulaire de contact sera relié au serveur sécurisé.';
 
   }
 );
-
-
-/* =========================================================
-   CHANGEMENT D'ETAT AUTH
-========================================================= */
-
-supabaseClient
-.auth
-.onAuthStateChange(
-  (event,session)=>{
-
-
-    setAuthUI(
-      session
-    );
-
-
-    if(
-      event ===
-      'SIGNED_OUT'
-    ){
-
-
-      cachedProfile =
-      null;
-
-
-      cachedProfileUserId =
-      null;
-
-
-      applySubscriptionState({
-        actif:false
-      });
-
-
-      clearProfilePhoto();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   INITIALISATION
-========================================================= */
-
-async function initialiseApp(){
-
-
-  try{
-
-
-    /* =====================================================
-       SESSION EXISTANTE
-    ===================================================== */
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-    .auth
-    .getSession();
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    const session =
-    data.session;
-
-
-    setAuthUI(
-      session
-    );
-
-
-    /* =====================================================
-       UTILISATEUR DEJA CONNECTE
-    ===================================================== */
-
-    if(
-      session?.user
-    ){
-
-
-      /*
-      IMPORTANT :
-
-      On attend le résultat de mon-profil
-      avant de terminer l'initialisation.
-
-      Le site sait donc immédiatement
-      si l'abonnement est actif.
-      */
-
-      await loadMyProfile({
-        silent:true
-      });
-
-
-      loadProfilePhoto(
-        session.user
-      );
-
-    }
-
-    else{
-
-
-      applySubscriptionState({
-        actif:false
-      });
-
-    }
-
-
-  }
-
-  catch(error){
-
-
-    console.error(
-      'Erreur initialisation :',
-      error
-    );
-
-
-    applySubscriptionState({
-      actif:false
-    });
-
-
-    setAuthUI(
-      null
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   DEMARRAGE
-========================================================= */
-
-initialiseApp();
-
 
 </script>
 
