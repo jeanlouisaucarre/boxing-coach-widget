@@ -1442,8 +1442,7 @@ function setAuthUI(session){
 
 function renderProfile(p,user){
 
-  const fields =
-  $('profileFields');
+  p = p || {};
 
   const fullName =
   `${p.prenom || ''} ${p.nom || ''}`.trim();
@@ -1460,41 +1459,89 @@ function renderProfile(p,user){
   $('profileTopEmail').textContent =
   p.email || user?.email || '';
 
-  const items = [
+  const birthValue = (()=>{
+    const v = p.dateNaissance;
+    if(!v) return '';
+    if(typeof v === 'number'){
+      const d = new Date(v * 1000);
+      if(!Number.isNaN(d.getTime())) return d.toISOString().slice(0,10);
+    }
+    const d = new Date(v);
+    return Number.isNaN(d.getTime()) ? '' : d.toISOString().slice(0,10);
+  })();
 
-    ['Prénom',p.prenom],
-    ['Nom',p.nom],
-    ['E-mail',p.email],
-    ['Téléphone',p.telephone],
-    ['Date de naissance',p.dateNaissance],
-    ['Niveau',p.niveau],
-    ['Objectif principal',p.objectif],
-    ['Contact d’urgence',p.contactUrgence],
-    ['Téléphone urgence',p.telephoneUrgence]
+  $('profileFields').innerHTML = `
+    <form id="profileForm" style="max-width:none;display:grid;gap:14px">
+      <div class="profile-fields">
+        <label class="profile-field"><small>Prénom</small><input id="profileFirstName" value="${escapeHtml(p.prenom || '')}" required></label>
+        <label class="profile-field"><small>Nom</small><input id="profileLastName" value="${escapeHtml(p.nom || '')}" required></label>
+        <label class="profile-field"><small>E-mail</small><input value="${escapeHtml(p.email || user?.email || '')}" readonly></label>
+        <label class="profile-field"><small>Téléphone</small><input id="profilePhone" value="${escapeHtml(p.telephone || '')}"></label>
+        <label class="profile-field"><small>Date de naissance</small><input id="profileBirthDate" type="date" value="${escapeHtml(birthValue)}"></label>
+        <label class="profile-field"><small>Niveau</small><input value="${escapeHtml(p.niveau || '')}" readonly></label>
+        <label class="profile-field"><small>Objectif principal</small><input id="profileGoal" value="${escapeHtml(p.objectif || '')}"></label>
+        <label class="profile-field"><small>Contact d’urgence</small><input id="profileEmergencyName" value="${escapeHtml(p.contactUrgence || '')}"></label>
+        <label class="profile-field"><small>Téléphone urgence</small><input id="profileEmergencyPhone" value="${escapeHtml(p.telephoneUrgence || '')}"></label>
+      </div>
+      <button class="btn primary" id="profileSave" type="submit">Enregistrer mes modifications</button>
+    </form>`;
 
-  ];
+  $('profileForm').addEventListener('submit', saveProfile);
+}
 
-  fields.innerHTML =
-  items.map(
-    ([label,value]) => `
+async function saveProfile(event){
+  event.preventDefault();
+  const status = $('profileStatus');
+  const button = $('profileSave');
+  status.className = 'profile-status';
+  status.textContent = 'Enregistrement…';
+  button.disabled = true;
 
-    <div class="profile-field">
+  try{
+    const {data:{session}, error:sessionError} = await supabaseClient.auth.getSession();
+    if(sessionError || !session) throw new Error('Tu dois être connecté.');
 
-      <small>
-      ${escapeHtml(label)}
-      </small>
+    const payload = {
+      prenom: $('profileFirstName').value.trim(),
+      nom: $('profileLastName').value.trim(),
+      telephone: $('profilePhone').value.trim(),
+      dateNaissance: $('profileBirthDate').value || null,
+      objectif: $('profileGoal').value.trim(),
+      contactUrgence: $('profileEmergencyName').value.trim(),
+      telephoneUrgence: $('profileEmergencyPhone').value.trim()
+    };
 
-      <strong>
-      ${escapeHtml(
-        formatProfileValue(value)
-      )}
-      </strong>
+    if(!payload.prenom || !payload.nom) throw new Error('Le prénom et le nom sont obligatoires.');
 
-    </div>
+    const response = await fetch(`${SUPABASE_URL}/functions/v1/mon-profil`, {
+      method:'PATCH',
+      headers:{
+        'Authorization':`Bearer ${session.access_token}`,
+        'apikey':SUPABASE_KEY,
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(payload)
+    });
 
-    `
-  ).join('');
+    const result = await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(result.error || `Erreur ${response.status}`);
 
+    if(result.profil){
+      cachedProfile = result.profil;
+      cachedProfileUserId = session.user.id;
+      renderProfile(result.profil, session.user);
+    }
+
+    $('profileStatus').className = 'profile-status';
+    $('profileStatus').textContent = '✓ Profil enregistré.';
+  } catch(error){
+    console.error('modification-profil', error);
+    status.className = 'profile-status error';
+    status.textContent = 'Impossible d’enregistrer : ' + error.message;
+  } finally {
+    const currentButton = $('profileSave');
+    if(currentButton) currentButton.disabled = false;
+  }
 }
 
 
