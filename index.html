@@ -25,11 +25,7 @@ body{
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
-.wrap{
-  max-width:1180px;
-  margin:auto;
-  padding:0 24px;
-}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}
 
 header{
   position:sticky;
@@ -47,14 +43,8 @@ nav{
   gap:28px;
 }
 
-.brand{
-  font-weight:950;
-  font-size:25px;
-}
-
-.brand b{
-  color:var(--accent);
-}
+.brand{font-weight:950;font-size:25px}
+.brand b{color:var(--accent)}
 
 .tag{
   font-size:9px;
@@ -100,12 +90,14 @@ nav{
   cursor:not-allowed;
 }
 
+/* Boutons connectés cachés par défaut */
 .nav-member,
 .nav-profile,
 .nav-logout{
   display:none;
 }
 
+/* Connecté */
 body.logged-in .nav-member,
 body.logged-in .nav-profile,
 body.logged-in .nav-logout{
@@ -114,6 +106,22 @@ body.logged-in .nav-logout{
 
 body.logged-in .js-login,
 body.logged-in .js-signup{
+  display:none;
+}
+
+/*
+=========================================================
+ABONNEMENT ACTIF
+
+Quand l'utilisateur possède un abonnement actif,
+on masque le menu commercial/public.
+
+Le contrôle réel des données privées doit rester
+également côté serveur.
+=========================================================
+*/
+
+body.subscription-active .public-nav-link{
   display:none;
 }
 
@@ -160,9 +168,7 @@ body.logged-in .js-signup{
   letter-spacing:-3px;
 }
 
-.hero h1 span{
-  color:var(--accent);
-}
+.hero h1 span{color:var(--accent)}
 
 .hero h2{
   font-size:27px;
@@ -194,17 +200,9 @@ body.logged-in .js-signup{
   border-right:1px solid var(--line);
 }
 
-.feature:last-child{
-  border-right:0;
-}
-
-.feature strong{
-  display:block;
-}
-
-.feature small{
-  color:var(--muted);
-}
+.feature:last-child{border-right:0}
+.feature strong{display:block}
+.feature small{color:var(--muted)}
 
 section{
   padding:70px 0;
@@ -217,9 +215,7 @@ section{
   gap:18px;
 }
 
-.course-section{
-  padding-bottom:90px;
-}
+.course-section{padding-bottom:90px}
 
 .card,
 .member-card{
@@ -229,9 +225,7 @@ section{
   padding:28px;
 }
 
-.card{
-  min-height:250px;
-}
+.card{min-height:250px}
 
 .icon{
   font-size:32px;
@@ -309,6 +303,7 @@ section{
   gap:60px;
 }
 
+/* Ligne conservée exactement comme avant */
 .community::before{
   content:"";
   position:absolute;
@@ -365,9 +360,7 @@ textarea{
   resize:vertical;
 }
 
-button{
-  font:inherit;
-}
+button{font:inherit}
 
 .status{
   min-height:22px;
@@ -401,9 +394,7 @@ button{
   line-height:.95;
 }
 
-.page-head h1 span{
-  color:var(--accent);
-}
+.page-head h1 span{color:var(--accent)}
 
 .member-email{
   color:var(--muted);
@@ -451,6 +442,24 @@ button{
   border-radius:10px;
   padding:18px;
   color:var(--muted);
+}
+
+/* Cartes réservées à un abonnement actif */
+.subscription-only{
+  display:none;
+}
+
+body.subscription-active .subscription-only{
+  display:block;
+}
+
+/* Information affichée sans abonnement */
+.no-subscription-only{
+  display:block;
+}
+
+body.subscription-active .no-subscription-only{
+  display:none;
 }
 
 
@@ -629,9 +638,7 @@ button{
   backdrop-filter:blur(8px);
 }
 
-.auth-modal.open{
-  display:flex;
-}
+.auth-modal.open{display:flex}
 
 .auth-card{
   position:relative;
@@ -652,9 +659,7 @@ button{
   line-height:1.5;
 }
 
-.auth-card form{
-  max-width:none;
-}
+.auth-card form{max-width:none}
 
 .auth-close{
   position:absolute;
@@ -688,9 +693,7 @@ button{
   font-size:14px;
 }
 
-.auth-status.error{
-  color:#ff7474;
-}
+.auth-status.error{color:#ff7474}
 
 footer{
   border-top:1px solid var(--line);
@@ -747,11 +750,11 @@ footer{
   .features{
     grid-template-columns:1fr 1fr;
   }
-
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -781,22 +784,38 @@ DISCIPLINE · PROGRESSION · COMMUNAUTÉ
 
 <div class="links">
 
-<a href="#accueil" class="public-link">
+
+<!-- MENU PUBLIC -->
+
+<a
+href="#accueil"
+class="public-link public-nav-link">
 Accueil
 </a>
 
-<a href="#offres" class="public-link">
+
+<a
+href="#offres"
+class="public-link public-nav-link">
 Nos cours
 </a>
 
-<a href="#coaching" class="public-link">
+
+<a
+href="#coaching"
+class="public-link public-nav-link">
 Coaching
 </a>
 
-<a href="#contact" class="public-link">
+
+<a
+href="#contact"
+class="public-link public-nav-link">
 Contact
 </a>
 
+
+<!-- NON CONNECTE -->
 
 <button
 class="btn js-login"
@@ -812,13 +831,10 @@ Créer un compte
 </button>
 
 
-<button
-class="btn nav-member"
-id="navMember"
-type="button">
-Mon espace
-</button>
-
+<!-- CONNECTE
+     IMPORTANT :
+     MON PROFIL EST MAINTENANT AVANT MON ESPACE
+-->
 
 <button
 class="btn nav-profile"
@@ -829,11 +845,20 @@ type="button">
 
 
 <button
+class="btn nav-member"
+id="navMember"
+type="button">
+Mon espace
+</button>
+
+
+<button
 class="btn nav-logout"
 id="navLogout"
 type="button">
 Se déconnecter
 </button>
+
 
 </div>
 
@@ -884,18 +909,14 @@ sont au cœur de chaque entraînement.
 <button
 class="btn primary js-signup"
 type="button">
-
 👤 Créer mon compte
-
 </button>
 
 
 <button
 class="btn js-login"
 type="button">
-
 → Se connecter
-
 </button>
 
 </div>
@@ -909,56 +930,30 @@ type="button">
 
 <div class="wrap features">
 
+
 <div class="feature">
-
-<strong>
-🏋️ PROGRESSION
-</strong>
-
-<small>
-À votre rythme
-</small>
-
+<strong>🏋️ PROGRESSION</strong>
+<small>À votre rythme</small>
 </div>
 
 
 <div class="feature">
-
-<strong>
-👥 COMMUNAUTÉ
-</strong>
-
-<small>
-Un esprit famille
-</small>
-
+<strong>👥 COMMUNAUTÉ</strong>
+<small>Un esprit famille</small>
 </div>
 
 
 <div class="feature">
-
-<strong>
-♥ BIEN-ÊTRE
-</strong>
-
-<small>
-Mental et physique
-</small>
-
+<strong>♥ BIEN-ÊTRE</strong>
+<small>Mental et physique</small>
 </div>
 
 
 <div class="feature">
-
-<strong>
-🏆 RÉSULTATS
-</strong>
-
-<small>
-Des objectifs concrets
-</small>
-
+<strong>🏆 RÉSULTATS</strong>
+<small>Des objectifs concrets</small>
 </div>
+
 
 </div>
 
@@ -1057,6 +1052,7 @@ Voir les formules →
 </a>
 
 </article>
+
 
 </div>
 
@@ -1186,9 +1182,7 @@ href="#contact">
 
 <div class="value">
 
-<b>
-🛡️ RESPECT
-</b>
+<b>🛡️ RESPECT</b>
 
 <span>
 Une valeur essentielle dans et hors du ring.
@@ -1199,9 +1193,7 @@ Une valeur essentielle dans et hors du ring.
 
 <div class="value">
 
-<b>
-📈 PROGRESSION
-</b>
+<b>📈 PROGRESSION</b>
 
 <span>
 Des entraînements adaptés à tous les niveaux.
@@ -1212,9 +1204,7 @@ Des entraînements adaptés à tous les niveaux.
 
 <div class="value">
 
-<b>
-👥 ESPRIT CLUB
-</b>
+<b>👥 ESPRIT CLUB</b>
 
 <span>
 Une ambiance conviviale et motivante.
@@ -1225,15 +1215,14 @@ Une ambiance conviviale et motivante.
 
 <div class="value">
 
-<b>
-♥ DÉPASSEMENT
-</b>
+<b>♥ DÉPASSEMENT</b>
 
 <span>
 Se fixer des objectifs et aller plus loin.
 </span>
 
 </div>
+
 
 </div>
 
@@ -1252,16 +1241,13 @@ id="contact">
 
 <div class="wrap">
 
-
 <div class="eyebrow">
 — UNE QUESTION ?
 </div>
 
-
 <h2>
 CONTACTER LE COACH
 </h2>
-
 
 <p style="color:var(--muted)">
 Le formulaire sera relié au serveur sécurisé.
@@ -1365,20 +1351,45 @@ id="memberEmail">
 
 
 <button
-class="btn memberHome"
+class="btn memberHome no-subscription-only"
 type="button">
 
 ← Accueil
 
 </button>
 
+
 </div>
 
 
-<div class="member-grid">
+<!-- =====================================================
+     MESSAGE SANS ABONNEMENT
+===================================================== -->
+
+<div
+class="member-note no-subscription-only"
+id="noSubscriptionMessage">
+
+<strong style="color:white">
+💳 Compte créé — abonnement non actif
+</strong>
+
+<br><br>
+
+Ton compte Boxing Coach est bien créé.
+Tu peux gérer ton profil et consulter les informations du club.
+
+Les fonctions réservées aux adhérents seront disponibles
+lorsqu’un abonnement sera actif.
+
+</div>
 
 
-<!-- PROFIL -->
+<div class="member-grid"
+style="margin-top:24px">
+
+
+<!-- PROFIL : TOUJOURS ACCESSIBLE -->
 
 <div class="member-card">
 
@@ -1406,7 +1417,7 @@ Voir mon profil →
 </div>
 
 
-<!-- ABONNEMENT -->
+<!-- ABONNEMENT : TOUJOURS VISIBLE -->
 
 <div class="member-card">
 
@@ -1418,7 +1429,7 @@ Voir mon profil →
 MON ABONNEMENT
 </h3>
 
-<p>
+<p id="subscriptionCardText">
 Consulte ton abonnement et son statut.
 </p>
 
@@ -1429,9 +1440,12 @@ Bientôt disponible →
 </div>
 
 
-<!-- PLANNING -->
+<!-- =====================================================
+     RESERVE ABONNEMENT ACTIF
+===================================================== -->
 
-<div class="member-card">
+
+<div class="member-card subscription-only">
 
 <div class="mi">
 📅
@@ -1452,9 +1466,7 @@ Bientôt disponible →
 </div>
 
 
-<!-- COACHING -->
-
-<div class="member-card">
+<div class="member-card subscription-only">
 
 <div class="mi">
 🥊
@@ -1476,9 +1488,7 @@ Bientôt disponible →
 </div>
 
 
-<!-- PROGRESSION -->
-
-<div class="member-card">
+<div class="member-card subscription-only">
 
 <div class="mi">
 📈
@@ -1499,9 +1509,7 @@ Bientôt disponible →
 </div>
 
 
-<!-- EQUIPEMENT -->
-
-<div class="member-card">
+<div class="member-card subscription-only">
 
 <div class="mi">
 🎒
@@ -1522,32 +1530,31 @@ Bientôt disponible →
 </div>
 
 
-<!-- SALONS -->
+<!-- SALONS SPECIAUX -->
 
-<div class="member-card">
+<div class="member-card subscription-only">
 
 <div class="mi">
 👥
 </div>
 
 <h3>
-SALONS
+SALONS MEMBRES
 </h3>
 
 <p>
-Échange avec la communauté dans tes salons.
+Accède aux salons réservés aux adhérents
+ayant un abonnement actif.
 </p>
 
 <button type="button">
-Bientôt disponible →
+Voir mes salons →
 </button>
 
 </div>
 
 
-<!-- MESSAGES -->
-
-<div class="member-card">
+<div class="member-card subscription-only">
 
 <div class="mi">
 ✉️
@@ -1567,12 +1574,6 @@ Bientôt disponible →
 
 </div>
 
-</div>
-
-
-<div class="member-note">
-
-Ton espace Boxing Coach est connecté à ton compte.
 
 </div>
 
@@ -1624,15 +1625,14 @@ type="button">
 
 </button>
 
+
 </div>
 
 
 <div class="profile-layout">
 
 
-<!-- =================================================
-     COLONNE PHOTO
-================================================= -->
+<!-- PHOTO -->
 
 <div class="profile-identity">
 
@@ -1661,9 +1661,7 @@ Mon profil
 <div
 class="profile-level"
 id="profileLevel">
-
 —
-
 </div>
 
 
@@ -1700,9 +1698,7 @@ Ta photo reste dans ton espace sécurisé.
 </div>
 
 
-<!-- =================================================
-     INFORMATIONS MODIFIABLES
-================================================= -->
+<!-- INFORMATIONS -->
 
 <div class="profile-information">
 
@@ -1713,9 +1709,7 @@ MES INFORMATIONS
 
 
 <p class="profile-description">
-
 Tu peux modifier tes informations personnelles ci-dessous.
-
 </p>
 
 
@@ -1733,8 +1727,6 @@ id="profileForm">
 <div class="profile-fields">
 
 
-<!-- PRENOM -->
-
 <div class="profile-field">
 
 <label for="profileFirstName">
@@ -1749,8 +1741,6 @@ required>
 
 </div>
 
-
-<!-- NOM -->
 
 <div class="profile-field">
 
@@ -1767,8 +1757,6 @@ required>
 </div>
 
 
-<!-- EMAIL -->
-
 <div class="profile-field">
 
 <label>
@@ -1778,15 +1766,11 @@ Adresse e-mail
 <div
 class="profile-readonly"
 id="profileEmail">
-
 —
-
 </div>
 
 </div>
 
-
-<!-- NIVEAU -->
 
 <div class="profile-field">
 
@@ -1797,15 +1781,11 @@ Niveau
 <div
 class="profile-readonly"
 id="profileLevelField">
-
 —
-
 </div>
 
 </div>
 
-
-<!-- TELEPHONE -->
 
 <div class="profile-field">
 
@@ -1821,8 +1801,6 @@ autocomplete="tel">
 </div>
 
 
-<!-- DATE DE NAISSANCE -->
-
 <div class="profile-field">
 
 <label for="profileBirthDate">
@@ -1835,8 +1813,6 @@ type="date">
 
 </div>
 
-
-<!-- OBJECTIF -->
 
 <div class="profile-field full">
 
@@ -1851,8 +1827,6 @@ placeholder="Exemple : améliorer ma technique, mon cardio..."></textarea>
 </div>
 
 
-<!-- CONTACT URGENCE -->
-
 <div class="profile-field">
 
 <label for="profileEmergencyName">
@@ -1865,8 +1839,6 @@ type="text">
 
 </div>
 
-
-<!-- TELEPHONE URGENCE -->
 
 <div class="profile-field">
 
@@ -1918,14 +1890,13 @@ Ton niveau est géré par le coach.
 
 
 <!-- =====================================================
-     CREER UN COMPTE
+     INSCRIPTION
 ===================================================== -->
 
 <div
 class="auth-modal"
 id="signupModal"
 aria-hidden="true">
-
 
 <div class="auth-card">
 
@@ -1934,9 +1905,7 @@ aria-hidden="true">
 class="auth-close"
 type="button"
 data-close="signupModal">
-
 ×
-
 </button>
 
 
@@ -1952,7 +1921,7 @@ CRÉER UN COMPTE
 
 <p>
 Crée ton espace avec ton adresse e-mail.
-Un e-mail de confirmation te sera envoyé.
+Tu n’as pas besoin d’avoir déjà un abonnement pour créer ton compte.
 </p>
 
 
@@ -1985,9 +1954,7 @@ required>
 <button
 class="btn primary"
 type="submit">
-
 Créer mon compte
-
 </button>
 
 
@@ -2007,15 +1974,13 @@ Déjà un compte ?
 <button
 type="button"
 id="goLogin">
-
 Se connecter
-
 </button>
 
 </div>
 
-</div>
 
+</div>
 </div>
 
 
@@ -2028,7 +1993,6 @@ class="auth-modal"
 id="loginModal"
 aria-hidden="true">
 
-
 <div class="auth-card">
 
 
@@ -2036,9 +2000,7 @@ aria-hidden="true">
 class="auth-close"
 type="button"
 data-close="loginModal">
-
 ×
-
 </button>
 
 
@@ -2078,9 +2040,7 @@ required>
 <button
 class="btn primary"
 type="submit">
-
 Se connecter
-
 </button>
 
 
@@ -2100,15 +2060,13 @@ Pas encore de compte ?
 <button
 type="button"
 id="goSignup">
-
 Créer un compte
-
 </button>
 
 </div>
 
-</div>
 
+</div>
 </div>
 
 
@@ -2152,9 +2110,7 @@ COACH
 
 /* =========================================================
    BOXING COACH
-   JAVASCRIPT PRINCIPAL
 ========================================================= */
-
 
 const $ = id =>
 document.getElementById(id);
@@ -2180,7 +2136,7 @@ window.supabase.createClient(
 
 
 /* =========================================================
-   PROFIL
+   PROFIL / ABONNEMENT
 ========================================================= */
 
 const PROFILE_BUCKET =
@@ -2199,12 +2155,91 @@ let cachedProfileUserId =
 null;
 
 
+/*
+NOUVEAU :
+
+On mémorise maintenant aussi
+l'abonnement renvoyé par mon-profil.
+*/
+
+let cachedSubscription = {
+  actif:false,
+  type:null,
+  dateDebut:null,
+  dateFin:null
+};
+
+
 let currentPhotoObjectUrl =
 null;
 
 
 /* =========================================================
-   NAVIGATION
+   APPLIQUER LE STATUT D'ABONNEMENT
+========================================================= */
+
+function applySubscriptionState(
+  abonnement
+){
+
+  const actif =
+  abonnement?.actif === true;
+
+
+  cachedSubscription =
+  abonnement || {
+    actif:false
+  };
+
+
+  /*
+  Cette classe contrôle uniquement
+  l'affichage de l'interface.
+
+  Les données privées devront également
+  être protégées côté serveur.
+  */
+
+  document.body
+  .classList
+  .toggle(
+    'subscription-active',
+    actif
+  );
+
+
+  const subscriptionText =
+  $('subscriptionCardText');
+
+
+  if(subscriptionText){
+
+    if(actif){
+
+      const type =
+      abonnement?.type ||
+      'Abonnement actif';
+
+
+      subscriptionText.textContent =
+      `${type} — abonnement actif.`;
+
+    }
+
+    else{
+
+      subscriptionText.textContent =
+      'Aucun abonnement actif pour le moment.';
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   PAGES
 ========================================================= */
 
 function hidePages(){
@@ -2228,8 +2263,39 @@ function showPublic(){
   hidePages();
 
 
-  $('publicPage').style.display =
-  'block';
+  /*
+  Un adhérent avec abonnement actif
+  ne revient plus sur la vitrine publique
+  depuis son interface membre.
+  */
+
+  if(
+    cachedSubscription?.actif === true
+  ){
+
+    const sessionEmail =
+    $('memberEmail').textContent || '';
+
+
+    $('memberArea').style.display =
+    'block';
+
+
+    if(sessionEmail){
+
+      $('memberEmail').textContent =
+      sessionEmail;
+
+    }
+
+  }
+
+  else{
+
+    $('publicPage').style.display =
+    'block';
+
+  }
 
 
   window.scrollTo({
@@ -2368,13 +2434,21 @@ function gristDateToInput(value){
 
 
 /* =========================================================
-   AFFICHER PROFIL
+   AFFICHER LE PROFIL
 ========================================================= */
 
 function renderProfile(
   profile,
   user
 ){
+
+  /*
+  Un compte Supabase peut maintenant
+  exister sans fiche Adherents.
+
+  Dans ce cas on garde au minimum
+  l'adresse e-mail du compte.
+  */
 
   const p =
   profile || {};
@@ -2451,7 +2525,7 @@ function renderProfile(
 
 
 /* =========================================================
-   CHARGER PROFIL DEPUIS LA EDGE FUNCTION
+   CHARGER PROFIL + ABONNEMENT
 ========================================================= */
 
 async function loadMyProfile(
@@ -2469,6 +2543,11 @@ async function loadMyProfile(
 
 
   if(!session){
+
+    applySubscriptionState({
+      actif:false
+    });
+
 
     if(!silent){
 
@@ -2514,7 +2593,6 @@ async function loadMyProfile(
 
         method:'GET',
 
-
         headers:{
 
           'Authorization':
@@ -2548,8 +2626,19 @@ async function loadMyProfile(
     }
 
 
+    /*
+    NOUVEAU :
+    on applique immédiatement le statut
+    de l'abonnement.
+    */
+
+    applySubscriptionState(
+      result.abonnement
+    );
+
+
     const profile =
-    result.profil || {};
+    result.profil;
 
 
     cachedProfile =
@@ -2566,12 +2655,16 @@ async function loadMyProfile(
     );
 
 
-    status.className =
-    'profile-status';
+    if(!silent){
+
+      status.className =
+      'profile-status';
 
 
-    status.textContent =
-    '';
+      status.textContent =
+      '';
+
+    }
 
 
     return profile;
@@ -2585,6 +2678,16 @@ async function loadMyProfile(
       'Erreur chargement profil :',
       error
     );
+
+
+    /*
+    En cas d'erreur serveur, on ne donne
+    jamais l'accès membre par défaut.
+    */
+
+    applySubscriptionState({
+      actif:false
+    });
 
 
     if(
@@ -2651,13 +2754,7 @@ async function showProfile(){
   }
 
 
-  /*
-  Si le profil est déjà en mémoire,
-  on l'affiche immédiatement.
-  */
-
   if(
-    cachedProfile &&
     cachedProfileUserId ===
     session.user.id
   ){
@@ -2699,7 +2796,7 @@ async function showProfile(){
 
 
 /* =========================================================
-   INTERFACE CONNECTEE
+   AUTH UI
 ========================================================= */
 
 function setAuthUI(session){
@@ -2727,11 +2824,24 @@ function setAuthUI(session){
 
   }
 
+  else{
+
+    /*
+    Déconnecté =
+    aucun droit abonnement.
+    */
+
+    applySubscriptionState({
+      actif:false
+    });
+
+  }
+
 }
 
 
 /* =========================================================
-   PHOTO : CHEMIN PRIVE
+   PHOTO
 ========================================================= */
 
 function profilePhotoPath(user){
@@ -2740,10 +2850,6 @@ function profilePhotoPath(user){
 
 }
 
-
-/* =========================================================
-   PHOTO PAR DEFAUT
-========================================================= */
 
 function clearProfilePhoto(){
 
@@ -2783,10 +2889,6 @@ function clearProfilePhoto(){
 
 }
 
-
-/* =========================================================
-   AFFICHER PHOTO
-========================================================= */
 
 function showProfilePhoto(url){
 
@@ -2829,10 +2931,6 @@ function showProfilePhoto(url){
 
 }
 
-
-/* =========================================================
-   CHARGER PHOTO PRIVEE
-========================================================= */
 
 async function loadProfilePhoto(user){
 
@@ -2906,7 +3004,7 @@ async function loadProfilePhoto(user){
 
 
 /* =========================================================
-   BOUTON PHOTO
+   CHOISIR UNE PHOTO
 ========================================================= */
 
 $('photoButton')
@@ -2922,7 +3020,7 @@ $('photoButton')
 
 
 /* =========================================================
-   AJOUTER / REMPLACER PHOTO
+   AJOUTER / CHANGER PHOTO
 ========================================================= */
 
 $('profilePhotoInput')
@@ -2938,11 +3036,6 @@ $('profilePhotoInput')
     const file =
     input.files?.[0];
 
-
-    /*
-    Permet de sélectionner ensuite
-    le même fichier si nécessaire.
-    */
 
     input.value =
     '';
@@ -3050,8 +3143,8 @@ $('profilePhotoInput')
 
 
       /*
-      On vérifie d'abord si
-      une photo existe déjà.
+      Vérification de l'existence
+      de l'avatar actuel.
       */
 
       const {
@@ -3071,7 +3164,7 @@ $('profilePhotoInput')
 
         /*
         PHOTO EXISTANTE :
-        on la remplace.
+        UPDATE.
         */
 
         const {
@@ -3108,7 +3201,7 @@ $('profilePhotoInput')
 
         /*
         PREMIERE PHOTO :
-        création du fichier.
+        UPLOAD.
         */
 
         const {
@@ -3143,11 +3236,7 @@ $('profilePhotoInput')
 
 
       /*
-      Affichage immédiat du nouveau
-      fichier sélectionné.
-
-      Cela évite que l'ancienne photo
-      reste affichée à cause du cache.
+      Affichage immédiat du nouveau fichier.
       */
 
       const previewUrl =
@@ -3170,8 +3259,7 @@ $('profilePhotoInput')
 
 
       /*
-      Puis vérification depuis
-      Supabase Storage.
+      Puis relecture depuis le bucket privé.
       */
 
       setTimeout(
@@ -3241,18 +3329,17 @@ $('profilePhotoInput')
 
 /*
 =========================================================
-STOP PARTIE 1
-=========================================================
+FIN PARTIE 1/2
 
-NE FERME PAS LE <script> ICI.
+NE METS PAS :
+</script>
+</body>
+</html>
 
-LA PARTIE 2 COMMENCE DIRECTEMENT
-APRES CETTE LIGNE.
-
+La PARTIE 2 continue directement ici.
 =========================================================
 */
-
-  /* =========================================================
+/* =========================================================
    ENREGISTRER LES MODIFICATIONS DU PROFIL
 ========================================================= */
 
@@ -3306,7 +3393,7 @@ $('profileForm')
 
 
       /* ===================================================
-         RECUPERER LES INFORMATIONS DU FORMULAIRE
+         INFORMATIONS DU FORMULAIRE
       =================================================== */
 
       const payload = {
@@ -3372,7 +3459,7 @@ $('profileForm')
 
 
       /* ===================================================
-         ENVOI VERS LA EDGE FUNCTION MON-PROFIL
+         ENVOI VERS MON-PROFIL
       =================================================== */
 
       const response =
@@ -3429,7 +3516,16 @@ $('profileForm')
 
 
       /* ===================================================
-         METTRE A JOUR LE CACHE
+         METTRE A JOUR L'ABONNEMENT
+      =================================================== */
+
+      applySubscriptionState(
+        result.abonnement
+      );
+
+
+      /* ===================================================
+         METTRE A JOUR LE PROFIL
       =================================================== */
 
       if(result.profil){
@@ -3453,12 +3549,6 @@ $('profileForm')
       else{
 
 
-        /*
-        Si jamais la fonction ne renvoie
-        pas le profil, on le recharge
-        silencieusement depuis Grist.
-        */
-
         await loadMyProfile({
           silent:true
         });
@@ -3467,7 +3557,7 @@ $('profileForm')
 
 
       /* ===================================================
-         MESSAGE DE CONFIRMATION
+         CONFIRMATION
       =================================================== */
 
       status.className =
@@ -3607,11 +3697,6 @@ document
       ()=>{
 
 
-        /*
-        On remet le message
-        de connexion à zéro.
-        */
-
         $('loginStatus').textContent =
         '';
 
@@ -3628,7 +3713,7 @@ document
 
 
 /* =========================================================
-   BOUTONS CREATION COMPTE
+   BOUTONS CREATION DE COMPTE
 ========================================================= */
 
 document
@@ -3688,7 +3773,7 @@ document
 
 
 /* =========================================================
-   CLIC A L'EXTERIEUR DE LA MODALE INSCRIPTION
+   CLIC HORS MODALE INSCRIPTION
 ========================================================= */
 
 $('signupModal')
@@ -3713,7 +3798,7 @@ $('signupModal')
 
 
 /* =========================================================
-   CLIC A L'EXTERIEUR DE LA MODALE CONNEXION
+   CLIC HORS MODALE CONNEXION
 ========================================================= */
 
 $('loginModal')
@@ -3825,7 +3910,7 @@ $('signupForm')
 
 
     /* =====================================================
-       VERIFIER LES MOTS DE PASSE
+       VERIFIER MOT DE PASSE
     ===================================================== */
 
     if(
@@ -3867,7 +3952,7 @@ $('signupForm')
 
 
       /* ===================================================
-         CREATION DU COMPTE SUPABASE
+         CREATION SUPABASE
       =================================================== */
 
       const {
@@ -3901,7 +3986,7 @@ $('signupForm')
 
 
       /* ===================================================
-         SI UNE SESSION EST CREEE DIRECTEMENT
+         SESSION IMMEDIATE
       =================================================== */
 
       if(data.session){
@@ -3928,19 +4013,23 @@ $('signupForm')
         null;
 
 
-        /*
-        Préchargement silencieux
-        du profil Grist.
-        */
-
-        loadMyProfile({
-          silent:true
+        applySubscriptionState({
+          actif:false
         });
 
 
         /*
-        Préchargement de la photo.
+        Vérification immédiate du profil
+        et de l'abonnement.
+
+        Un nouveau compte sans abonnement
+        restera donc en mode public + compte.
         */
+
+        await loadMyProfile({
+          silent:true
+        });
+
 
         loadProfilePhoto(
           data.session.user
@@ -3962,7 +4051,7 @@ $('signupForm')
 
 
           },
-          700
+          500
         );
 
       }
@@ -3971,8 +4060,7 @@ $('signupForm')
 
 
         /*
-        Si la confirmation e-mail
-        est activée dans Supabase.
+        Confirmation e-mail activée.
         */
 
         status.className =
@@ -4083,10 +4171,6 @@ $('loginForm')
       }
 
 
-      /* ===================================================
-         INTERFACE CONNECTEE
-      =================================================== */
-
       setAuthUI(
         data.session
       );
@@ -4101,7 +4185,7 @@ $('loginForm')
 
 
       /* ===================================================
-         RESET DU CACHE
+         RESET CACHE
       =================================================== */
 
       cachedProfile =
@@ -4112,49 +4196,43 @@ $('loginForm')
       null;
 
 
-      /* ===================================================
-         PRECHARGEMENT DU PROFIL
-
-         Le chargement commence dès la connexion.
-         Quand l'utilisateur clique ensuite sur
-         "Mon profil", les données sont déjà prêtes.
-      =================================================== */
-
-      loadMyProfile({
-        silent:true
+      applySubscriptionState({
+        actif:false
       });
 
 
       /* ===================================================
-         PRECHARGEMENT PHOTO
+         IMPORTANT
+
+         On ATTEND maintenant mon-profil.
+
+         Comme ça, avant d'afficher l'espace,
+         le site sait déjà si l'utilisateur
+         possède un abonnement actif.
       =================================================== */
 
-      loadProfilePhoto(
+      await loadMyProfile({
+        silent:true
+      });
+
+
+      await loadProfilePhoto(
         data.session.user
       );
 
 
-      setTimeout(
-        ()=>{
-
-
-          closeModal(
-            'loginModal'
-          );
-
-
-          showMember(
-            data.session.user
-          );
-
-
-          status.textContent =
-          '';
-
-
-        },
-        500
+      closeModal(
+        'loginModal'
       );
+
+
+      showMember(
+        data.session.user
+      );
+
+
+      status.textContent =
+      '';
 
 
     }
@@ -4214,7 +4292,7 @@ $('navLogout')
 
 
     /* =====================================================
-       VIDER LE PROFIL EN MEMOIRE
+       VIDER PROFIL
     ===================================================== */
 
     cachedProfile =
@@ -4226,7 +4304,16 @@ $('navLogout')
 
 
     /* =====================================================
-       VIDER LA PHOTO
+       VIDER ABONNEMENT
+    ===================================================== */
+
+    applySubscriptionState({
+      actif:false
+    });
+
+
+    /* =====================================================
+       VIDER PHOTO
     ===================================================== */
 
     clearProfilePhoto();
@@ -4248,7 +4335,7 @@ $('navLogout')
 
 
 /* =========================================================
-   NAVIGATION -> MON ESPACE
+   MON ESPACE
 ========================================================= */
 
 $('navMember')
@@ -4262,6 +4349,21 @@ $('navMember')
 
 
     if(session){
+
+
+      /*
+      On revérifie le statut avant
+      d'afficher l'espace membre.
+
+      Si le coach vient d'activer
+      l'abonnement dans Grist,
+      le changement pourra donc
+      être récupéré.
+      */
+
+      await loadMyProfile({
+        silent:true
+      });
 
 
       showMember(
@@ -4285,7 +4387,7 @@ $('navMember')
 
 
 /* =========================================================
-   NAVIGATION -> MON PROFIL
+   MON PROFIL
 ========================================================= */
 
 $('navProfile')
@@ -4317,7 +4419,7 @@ $('memberProfileButton')
 
 
 /* =========================================================
-   PROFIL -> RETOUR MON ESPACE
+   PROFIL -> MON ESPACE
 ========================================================= */
 
 $('profileBack')
@@ -4331,6 +4433,16 @@ $('profileBack')
 
 
     if(session){
+
+
+      /*
+      Revérifier également l'abonnement
+      au retour du profil.
+      */
+
+      await loadMyProfile({
+        silent:true
+      });
 
 
       showMember(
@@ -4353,6 +4465,9 @@ $('profileBack')
 
 /* =========================================================
    ESPACE MEMBRE -> ACCUEIL
+
+   Ce bouton n'est affiché que pour
+   les comptes sans abonnement actif.
 ========================================================= */
 
 document
@@ -4379,6 +4494,12 @@ document
 
 /* =========================================================
    LIENS DU MENU PUBLIC
+
+   Ils restent accessibles aux comptes
+   sans abonnement.
+
+   Avec abonnement actif, ces liens
+   sont cachés par le CSS.
 ========================================================= */
 
 document
@@ -4392,6 +4513,21 @@ document
     link.addEventListener(
       'click',
       ()=>{
+
+
+        /*
+        Sécurité supplémentaire :
+        si abonnement actif, on ne
+        bascule pas vers la vitrine.
+        */
+
+        if(
+          cachedSubscription?.actif === true
+        ){
+
+          return;
+
+        }
 
 
         $('memberArea')
@@ -4436,7 +4572,7 @@ $('contactForm')
 
 
 /* =========================================================
-   CHANGEMENT D'ETAT DE CONNEXION
+   CHANGEMENT D'ETAT AUTH
 ========================================================= */
 
 supabaseClient
@@ -4464,6 +4600,11 @@ supabaseClient
       null;
 
 
+      applySubscriptionState({
+        actif:false
+      });
+
+
       clearProfilePhoto();
 
     }
@@ -4483,7 +4624,7 @@ async function initialiseApp(){
 
 
     /* =====================================================
-       RECUPERER LA SESSION EXISTANTE
+       SESSION EXISTANTE
     ===================================================== */
 
     const {
@@ -4506,10 +4647,6 @@ async function initialiseApp(){
     data.session;
 
 
-    /* =====================================================
-       METTRE A JOUR LA NAVIGATION
-    ===================================================== */
-
     setAuthUI(
       session
     );
@@ -4525,23 +4662,32 @@ async function initialiseApp(){
 
 
       /*
-      Préchargement silencieux
-      du profil depuis Grist.
+      IMPORTANT :
+
+      On attend le résultat de mon-profil
+      avant de terminer l'initialisation.
+
+      Le site sait donc immédiatement
+      si l'abonnement est actif.
       */
 
-      loadMyProfile({
+      await loadMyProfile({
         silent:true
       });
 
 
-      /*
-      Préchargement de la photo
-      privée depuis Supabase Storage.
-      */
-
       loadProfilePhoto(
         session.user
       );
+
+    }
+
+    else{
+
+
+      applySubscriptionState({
+        actif:false
+      });
 
     }
 
@@ -4555,6 +4701,11 @@ async function initialiseApp(){
       'Erreur initialisation :',
       error
     );
+
+
+    applySubscriptionState({
+      actif:false
+    });
 
 
     setAuthUI(
